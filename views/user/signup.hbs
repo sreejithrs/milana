@@ -1,0 +1,80 @@
+<script src="https://code.jquery.com/jquery-2.2.4.js" integrity="sha256-iT6Q9iMJYuQiMWNd9lDyBUStIq/8PuOW33aOqmvFpqI="
+    crossorigin="anonymous"></script>
+<style>
+    @media (min-width: 1025px) {
+  .h-custom {
+    height: 100vh !important;
+  }
+}
+</style>
+
+
+<section class="" style="background-color: #e6e6e6; height: 1000px ;">
+  <div class="container py-5">
+    <div class="row d-flex justify-content-center align-items-center h-100">
+      <div class="col-lg-8 col-xl-6">
+        <div class="card rounded-3">
+          <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-registration/img3.webp" class="w-100" style="border-top-left-radius: .3rem; border-top-right-radius: .3rem;" alt="Sample photo">
+          <div class="card-body p-4 p-md-5">
+            <h3 class="mb-4 pb-2 pb-md-0 mb-md-5 px-md-2">Sign Up</h3>
+
+            <form class="px-md-2" action="/signup" method="post">
+
+              <div class="form-outline mb-4">
+                <label class="form-label" for="form3Example1q">Name</label>
+                <input type="text" id="name" name="name" onkeyup="nameValidate()" class="form-control" />
+                <div id="errormsg4" class="error-msg"></div>
+              </div>
+
+              <div class="row">
+                <div class="col-md-6 mb-4">
+
+                  <div class="form-outline datepicker">
+                    <label for="exampleDatepicker1" name="number" class="form-label">Phone Number</label>
+                    <input type="text" class="form-control" name="number" id="number" onkeyup="mobileValidate()"/>
+                  </div>
+                  <div id="errormsg2" class="error-msg"></div>
+                </div>
+                <div class="col-md-6 mb-4">
+
+                   <div class="form-outline datepicker">
+                    <label for="exampleDatepicker1" class="form-label">Email</label>
+                    <input type="text" id="email" onkeyup="emailValidate()" name="email" class="form-control" id="exampleDatepicker1"/>
+                  </div>
+                    <div id="errormsg1" class="error-msg"></div>
+                </div>
+              </div>
+
+              <div class="mb-4">
+                <label for="exampleDatepicker1" class="form-label">Birthday</label>
+                <input type="date" id="bday" name="bday">
+
+              </div>
+
+              <div class="form-outline mb-4">
+                <label class="form-label" for="form3Example1q">Password</label>
+                <input type="text" id="password1" name="password" onkeyup="passwordValidate()" class="form-control" />
+                <div id="errormsg3" class="error-msg"></div>
+              </div>
+
+               <div class="form-outline mb-4">
+                <label class="form-label" for="form3Example1q">Confirm Password</label>
+                <input type="text" id="password2" onkeyup="passwordValidate()" class="form-control" />
+                <div id="errormsg6" class="error-msg"></div>
+              </div>
+
+               <div>
+                   <a href="/login"><p class="signIn-link">Already have an Account ?, Sign In</p></a>
+               </div>
+
+              <button type="submit" onclick="return validate()" class="btn btn-success btn-lg mb-1">Submit</button>
+
+            </form>
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+

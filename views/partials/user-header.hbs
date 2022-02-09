@@ -1,0 +1,141 @@
+<!-- Offcanvas Menu Begin -->
+<div class="offcanvas-menu-overlay"></div>
+<div class="offcanvas-menu-wrapper">
+    <div class="offcanvas__option">
+        <div class="offcanvas__links">
+            <label class="dropdown">
+                <div class="dropdown1 ">
+                            <button class="dropbtn">
+                                {{#if user}}
+                                <a>{{user.name}}</a>
+                                {{else}}
+                                <a href="/login">Sign In</a>
+                                {{/if}}
+
+                                {{#if user}}
+                                <i class="fa fa-caret-down"></i>
+                                {{/if}}
+                            </button>
+
+                            {{#if user}}
+                            <div class="dropdown-content">
+                                <a href="/signup">My Profile</a>
+                                <a href="/login">My Orders</a>
+                                <a href="/logout">Logout</a>
+                            </div>
+                            {{/if}}
+
+                </div>
+
+            </label>
+            <a href="#">About</a>
+        </div>
+
+    </div>
+    <div class="offcanvas__nav__option">
+        <a href="#" class="search-switch"><img src="img/icon/search.png" alt=""></a>
+        <a href="#"><img src="img/icon/heart.png" alt=""></a>
+        <a href="#"><img src="img/icon/cart.png" alt=""> <span>0</span></a>
+        <div class="price">$0.00</div>
+    </div>
+    <div id="mobile-menu-wrap"></div>
+
+</div>
+<!-- Offcanvas Menu End -->
+
+<!-- Header Section Begin -->
+<header class="header">
+    <div class="header__top">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-6 col-md-7">
+
+                </div>
+                <div class="col-lg-6 col-md-5">
+                    <div class="header__top__right">
+                        <div class="dropdown header__top__links">
+                            <button class="dropbtn">
+                                {{#if user}}
+                                <a>{{user.name}}</a>
+                                {{else}}
+                                <a href="/login">Sign In</a>
+                                {{/if}}
+
+                                {{#if user}}
+                                <i class="fa fa-caret-down"></i>
+                                {{/if}}
+                            </button>
+
+                            {{#if user}}
+                            <div class="dropdown-content">
+                                <a href="/signup">My Profile</a>
+                                <a href="/login">My Orders</a>
+                                <a href="/logout">Logout</a>
+                            </div>
+                            {{/if}}
+
+                        </div>
+                        <div class="header__top__links">
+                            <a href="#">About</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-3 col-md-3">
+                <div class="header__logo">
+                    <a href="/">
+                        <p id="logo">Milana</p>
+                    </a>
+                </div>
+            </div>
+            <div class="col-lg-6 col-md-6">
+                <nav class="header__menu mobile-menu">
+                    <ul>
+                        <li class="active"><a href="./index.html">Home</a></li>
+
+                        <li><a href="#">Men</a>
+                            <ul class="dropdown">
+                                <li><a href="./about.html">Shirts</a></li>
+                                <li><a href="./shop-details.html">T-Shirts</a></li>
+                                <li><a href="./shopping-cart.html">Jeans</a></li>
+                            </ul>
+                        </li>
+                        <li><a href="#">Women</a>
+                            <ul class="dropdown">
+                                <li><a href="./about.html">Saree</a></li>
+                                <li><a href="./shop-details.html">Kurtha</a></li>
+                                <li><a href="./shopping-cart.html">Topwear</a></li>
+
+                            </ul>
+                        </li>
+                        <li><a href="#">Kids</a>
+                            <ul class="dropdown">
+                                <li><a href="./about.html">Shirts</a></li>
+                                <li><a href="./shop-details.html">T-Shirts</a></li>
+                                <li><a href="./shopping-cart.html">Shorts</a></li>
+                            </ul>
+                        </li>
+
+
+                    </ul>
+                </nav>
+            </div>
+            <div class="col-lg-3 col-md-3">
+                <div class="header__nav__option">
+
+
+                    <a href="#" class="search-switch"><img src="img/icon/search.png" alt=""></a>
+                    <a href="#"><img src="img/icon/heart.png" alt=""></a>
+                    <a href="#"><img src="img/icon/cart.png" alt=""> <span>0</span></a>
+                    <div class="price">₹0.00</div>
+                </div>
+            </div>
+        </div>
+        <div class="canvas__open"><i class="fa fa-bars"></i></div>
+    </div>
+</header>
+<!-- Header Section End -->
