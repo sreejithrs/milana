@@ -1,5 +1,4 @@
-<script src="https://code.jquery.com/jquery-2.2.4.js" integrity="sha256-iT6Q9iMJYuQiMWNd9lDyBUStIq/8PuOW33aOqmvFpqI="
-    crossorigin="anonymous"></script>
+
 <style>
     @media (min-width: 1025px) {
   .h-custom {
@@ -53,17 +52,24 @@
 
               <div class="form-outline mb-4">
                 <label class="form-label" for="form3Example1q">Password</label>
-                <input type="text" id="password1" name="password" onkeyup="passwordValidate()" class="form-control" />
+                <input type="password" id="password1" name="password" onkeyup="passwordValidate()" class="form-control" />
                 <div id="errormsg3" class="error-msg"></div>
               </div>
-
+              
                <div class="form-outline mb-4">
                 <label class="form-label" for="form3Example1q">Confirm Password</label>
-                <input type="text" id="password2" onkeyup="passwordValidate()" class="form-control" />
+                <input type="password" id="password2" onkeyup="passwordValidate()" class="form-control" />
                 <div id="errormsg6" class="error-msg"></div>
+                <div id="successmsg" style="color: rgb(2, 146, 2);"></div>
               </div>
 
-               <div>
+               <div style="color: red;font-family:Verdana, Geneva, Tahoma, sans-serif;">
+                {{#if signUpErr}}
+                {{signUpErr}}
+                {{/if}}
+              </div>
+
+               <div style="margin-top: 20px;">
                    <a href="/login"><p class="signIn-link">Already have an Account ?, Sign In</p></a>
                </div>
 

@@ -1,0 +1,176 @@
+<section style="height: 800px;">
+    <div class="container align-items-center " style="padding-top: 4rem;">
+
+        <div style="margin-bottom: 30px;">
+            <h2 class="text-center">Add Catgeory</h2>
+        </div>
+
+        <div class="col-md-6 card-product pt-4" style="margin-left: 300px; height: 800px;">
+
+            <div class="each-cat">
+                <form action="/admin/add-category" method="post" enctype="multipart/form-data">
+                    <div class="row">
+                        <div class="form-group col-md-5 ml-3 mt-3">
+                            <label for="exampleInputEmail1">Category Name</label>
+                            <input type="text" name="Category" class="form-control" id="exampleInputEmail1"
+                                aria-describedby="emailHelp">
+
+
+                        </div>
+
+                        <div class="col-md-6 mt-3">
+                            <label for="formFileSingle" class="form-label">Image</label>
+                            <input class="form-control" name="image" type="file">
+                        </div>
+
+                    </div>
+
+                    <div class="row">
+
+
+                        <div class="col-md-2" style="margin-left: 18px;">
+                            <button type="submit" class="btn btn-md btn-success">Submit</button>
+                        </div>
+
+                        <div class="col-md-6 mt-2" style="color: red; ">
+                                {{#if catErr}}
+                                {{catErr}}
+                                {{/if}}
+                        </div>
+
+                    </div>
+
+                </form>
+            </div>
+
+
+            <div class="each-cat">
+                <form action="/admin/sub-category" method="post" style="margin-top: 30px;">
+
+                    <div class="form-group">
+                        <div class="row">
+                            <div class="col-md-3 mt-4">
+                                <label for="" class="pl-3">Category</label><br>
+                                <select name="Category" class="ml-3" autofocus>
+                                    {{#each cat}}
+                                    <option value="{{this.Category}}" name="Category">{{this.Category}}</option>
+                                    {{/each}}
+                                </select><br><br><br>
+                            </div>
+                            <div class="col-md-6 mt-4">
+                                <label for="exampleInputEmail1">Subcategory Name</label>
+                                <input type="text" name="Subcategory" class="form-control" id="exampleInputEmail1"
+                                    aria-describedby="emailHelp">
+
+                            </div>
+                            <div class="col-md-3" style="margin-top: 55px;">
+                                <button type="submit" class="btn btn-md btn-success">Submit</button>
+                            </div>
+                        </div>
+
+                        <div style="color: red;margin-left: 20px; margin-top: -23px;">
+                            {{#if subCatErr}}
+                            {{subCatErr}}
+                            {{/if}}
+                        </div>
+                    </div>
+
+                </form>
+            </div>
+
+            <div class="each-cat">
+                <form action="/admin/add-color" method="post" style="margin-top: 30px;">
+
+                    <div class="form-group">
+                        <div class="row">
+                            <div class="col-md-7 mt-4 ml-3">
+                                <label for="exampleInputEmail1">Color</label>
+                                <input type="text" name="Color" class="form-control" id="exampleInputEmail1"
+                                    aria-describedby="ColourHelp">
+
+                            </div>
+                            <div class="col-md-4" style="margin-top: 55px;">
+                                <button type="submit" class="btn btn-md btn-success">Submit</button>
+                            </div>
+                        </div>
+
+                        <div style="color: red;margin-left: 20px; margin-top: 15px;">
+                            {{#if colorErr}}
+                            {{colorErr}}
+                            {{/if}}
+                        </div>
+
+                    </div>
+
+                </form>
+            </div>
+
+            <div class="each-cat">
+                <form action="/admin/add-size" method="post" style="margin-top: 30px;">
+
+                    <div class="form-group">
+                        <div class="row">
+                            <div class="col-md-7 mt-4 ml-3">
+                                <label for="exampleInputEmail1">Size</label>
+                                <input type="text" name="Size" class="form-control" id="exampleInputEmail1"
+                                    aria-describedby="ColourHelp">
+
+                            </div>
+                            <div class="col-md-4" style="margin-top: 55px;">
+                                <button type="submit" class="btn btn-md btn-success">Submit</button>
+                            </div>
+                        </div>
+
+                        <div style="color: red;margin-left: 20px; margin-top: 15px;">
+                            {{#if sizeErr}}
+                            {{sizeErr}}
+                            {{/if}}
+                        </div>
+                    </div>
+
+                </form>
+            </div>
+
+
+
+        </div>
+
+
+
+        <div class="row justify-content-center">
+            <div class="col-md-4">
+                <div style="margin-top: 100px;">
+                    <h2 class="text-center">Categories</h2>
+                    <div style="margin-top: 30px;">
+                        <table class="table">
+                            <thead>
+                                <tr>
+
+                                    <th scope="col">Category</th>
+                                    <th scope="col">SubCategory</th>
+
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {{#each cat}}
+                                <tr>
+
+                                    <td>{{this.Category}}</td>
+                                    <td>{{this.SubCategory}}</td>
+
+                                </tr>
+                                {{/each}}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+
+
+    </div>
+
+
+</section>

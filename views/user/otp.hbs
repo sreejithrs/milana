@@ -6,7 +6,7 @@
           <div class="row g-0">
             <div class="col-md-6 col-lg-5 d-none d-md-block">
               <img
-                src="/images/login.jpeg"
+                src="/images/Login1.jpg"
                 alt="login form"
                 class="img-fluid" style="border-radius: 1rem 0 0 1rem; height: 600px;"
               />
@@ -20,6 +20,10 @@
                     <i class="fas fa-cubes fa-2x me-3" style="color: #ff6219;"></i>
                     <span class="h1 fw-bold mb-0">Login</span>
                   </div>
+
+                  {{#if number}}
+                  <p style="color: red; font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;">An OTP has been sent to {{number}}</p>
+                  {{/if}}
 
            
 
@@ -37,7 +41,7 @@
                   </div>
 
                   <div class="pt-1 mb-4">
-                    <button class="btn btn-dark btn-md btn-block" type="submit">Submit</button>
+                    <button class="btn btn-success btn-md btn-block" type="submit">Submit</button>
                   </div>
                  
                   

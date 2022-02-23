@@ -1,0 +1,139 @@
+
+
+<section style="height: 1200px;">
+    <div class="container align-items-center" style="padding-top: 4rem;">
+
+        <div class="row justify-content-center">
+            <div class="col-md-6" style="transition: all 1s ease-out;">
+
+                {{#if success}} <div style="transition:0.5s; -webkit-transition:0.5s;" id="successDiv"
+                    class="alert alert-success" role="alert"><i class="fa-regular fa-circle-check"></i>Product Added
+                </div>{{/if}}
+
+            </div>
+        </div>
+        {{!-- --}}
+
+        <div class="row justify-content-center">
+            <div class="col-md-6"
+                style="box-shadow: 0 8px 16px 0 rgba(218, 8, 8, 0.2);transition: 0.3s;height: 1050px;">
+                <h2 class="text-center admin-logo pt-3">ADD PRODUCT</h2>
+                <form action="/admin/add-product" method="post" enctype="multipart/form-data">
+
+                    <label for="">Name</label>
+                    <input type="text" id="proname" onkeyup="proNameValidate()" name="Name" class="form-control">
+                    <div class="error-msg errormsg4"></div>
+                    <br>
+
+                    <div class="row">
+                        <div class="col-md-6">
+                            <label for="">Max Price</label>
+                            <input type="text" id="maxprice" name="Maxprice" onkeyup="maxPriceValidate()"
+                                class="form-control">
+                            <div id="errormsg1" class="error-msg"></div>
+                            <br>
+                        </div>
+                        <div class="col-md-6">
+                            <label for="">Price</label>
+                            <input type="text" id="price" name="Price" onkeyup="priceValidate()" class="form-control">
+                            <div id="errormsg3" class="error-msg"></div>
+                            <br>
+                        </div>
+
+                    </div>
+
+                    <label for="">Title</label>
+                    <input id='title' type="text" onkeyup="proNameValidate()" name="Title" class="form-control proname">
+                    <div class="errormsg4 error-msg"></div>
+                    <br>
+                    <div class="row">
+                        <div class="col-md-3">
+                            <label for="">Category</label><br>
+                            <select name="Category" onmousedown="catSelect()" id="Category">
+                                <option value="selectcard">Select</option>
+                                {{#each data}}
+                                <option value="{{this.Category}}" name="Category">{{this.Category}}</option>
+                                {{/each}}
+
+                            </select><br><br><br>
+                        </div>
+                        <div class="col-md-3">
+                            <label for="">Sub Category</label><br>
+                            <select name="Subcategory" id="subCat" style="display:block !important;">
+                            </select><br><br><br>
+
+                        </div>
+                        <div class="col-md-6">
+                            <label for="">Colours</label><br>
+                            <div class="mt-1">
+                                {{#each color}}
+                                <div class="form-check form-check-inline">
+                                    <input class="form-check-input" type="checkbox" id="inlineCheckbox1" name="Colour"
+                                        value="{{this.Color}}">
+                                    <label class="form-check-label" for="inlineCheckbox1">{{this.Color}}</label>
+                                </div>
+                                {{/each}}
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-md-12" style="margin-top: 10px;">
+                        <label for="">Size</label><br>
+
+                        <div class="mt-1">
+                            {{#each size}}
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="checkbox" id="inlineCheckbox1" name="Size"
+                                    value="{{this.Size}}">
+                                <label class="form-check-label" for="inlineCheckbox1">{{this.Size}}</label>
+                            </div>
+                            {{/each}}
+                        </div>
+
+                    </div>
+
+                    <div style="margin-top: 30px;">
+                        <label for="">Description</label>
+                        <input type="text" name="Description" onkeyup="proNameValidate()" class="form-control">
+                        <div class="errormsg4 error-msg"></div>
+                    </div>
+
+                    <div style="margin-top: 30px;">
+                        <label for="">Stock</label>
+                        <input id="stock" type="text" name="Stock" class="form-control">
+                        <div id="errormsg2" class="error-msg"></div>
+                    </div>
+
+                    <div class="mb-3 mt-3">
+                        <label for="formFileMultiple" class="form-label">Images</label>
+
+
+              
+                    </div>
+                    
+
+
+                    <div class="mt-4">
+                        <button type="submit" onclick="return proValidate()" class="btn btn-success">Add
+                            Product</button>
+                    </div>
+
+                </form>
+
+            </div>
+        </div>
+    </div>
+
+</section>
+
+<script>
+    window.addEventListener('load', (event) => {
+        setTimeout(() => {
+            document.getElementById('successDiv').style.display = 'none';
+        }, 2000)
+    });
+</script>
+
+<script>
+   
+</script>

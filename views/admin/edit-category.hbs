@@ -1,0 +1,92 @@
+ <script language="javascript" type="text/javascript">
+        window.onload = function () {
+            var fileUpload = document.getElementById("fileupload");
+            fileUpload.onchange = function () {
+                if (typeof (FileReader) != "undefined") {
+                    var dvPreview = document.getElementById("dvPreview");
+                    dvPreview.innerHTML = "";
+                    var regex = /^([a-zA-Z0-9\s_\\.\-:])+(.jpg|.jpeg|.gif|.png|.bmp|.webp)$/;
+                    for (var i = 0; i < fileUpload.files.length; i++) {
+                        var file = fileUpload.files[i];
+                        if (regex.test(file.name.toLowerCase())) {
+                            var reader = new FileReader();
+                            reader.onload = function (e) {
+                                var img = document.createElement("IMG");
+                                img.height = "110";
+                                img.width = "90";
+                                img.src = e.target.result;
+                                dvPreview.appendChild(img);
+                            }
+                            reader.readAsDataURL(file);
+                        } else {
+                            alert(file.name + " is not a valid image file.");
+                            dvPreview.innerHTML = "";
+                            return false;
+                        }
+                    }
+                } else {
+                    alert("This browser does not support HTML5 FileReader.");
+                }
+            }
+        };
+    </script>
+
+
+
+<section style="height: 1300px;">
+    <div class="container align-items-center" style="padding-top: 8rem;">
+
+        <div class="row justify-content-center">
+            <div class="col-md-6" style="transition: all 1s ease-out;">
+
+                {{#if success}} <div style="transition:0.5s; -webkit-transition:0.5s;" id="successDiv"
+                    class="alert alert-success" role="alert"><i class="fa-regular fa-circle-check"></i>Category Updated
+                </div>
+                {{/if}}
+
+            </div>
+        </div>
+
+        <div class="row justify-content-center">
+            <div class="col-md-6"
+                style="box-shadow: 0 8px 16px 0 rgba(218, 8, 8, 0.2);transition: 0.3s;height: 1050px;">
+                <h2 class="text-center admin-logo pt-3">Edit Category</h2>
+                <form action="/admin/edit-category/{{cat._id}}" method="post" enctype="multipart/form-data">
+                    <label for="">Category Name</label>
+                    <input type="text" name="Category" class="form-control" value="{{cat.Category}}">
+                    <br>
+
+                    <div class="col-md-12 mt-3">
+                        <label for="formFileSingle" class="form-label">Image</label>
+                        <input class="form-control" name="image" id="fileupload" type="file">
+                    </div>
+
+                    <div id="dvPreview" class="mt-2">
+                        <img src="/category-images/{{cat._id}}.jpg" style="height: 110px;width: 90px;">
+                    </div>
+
+                    {{#each cat.SubCategory}}
+                    <div class="row">
+                        <div class="col-md-6">
+                            <label for="">SubCategories</label>
+                            <input type="text" name="SubCategory" class="form-control" value="{{this}}">
+                            <br>
+                        </div>
+                        <div class="col-md-6">
+                            <button class="btn btn-danger" onclick="delete_sub('{{this}}','{{../cat._id}}');">Delete</button>
+                        </div>
+                    </div>
+                    {{/each}}
+
+                    <div class="mt-4">
+                        <button class="btn btn-success">Edit Category</button>
+                    </div>
+
+                </form>
+
+            </div>
+        </div>
+    </div>
+
+
+</section>

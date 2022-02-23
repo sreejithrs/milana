@@ -1,0 +1,39 @@
+<section>
+    <div class="container-fluid " >
+        <div class="row d-flex justify-content-center align-items-center">
+
+            <div class="col-md-6 mt-5" style="height: 500px;">
+                <form action="/admin/login" method="post">
+                    <div class="d-flex flex-row justify-content-center">
+                        <p class=" mb-0 me-3 text-primary admin-logo">Admin Login</p>
+
+                    </div>
+
+                    <div class="mb-4 mt-5">
+                        <label>Name</label>
+                        <input type="text" class="form-control " name="name" placeholder="Enter the Name" />
+
+                    </div>
+
+                    <div class="mb-3 mt-3">
+                        <label>Password</label>
+                        <input type="password" class="form-control" name="password" placeholder="Enter password" />
+                    </div>
+
+                    <div>
+                        {{#if err}}
+                        <p class="error text-danger">{{err}}</p>
+                        {{/if}}
+                    </div>
+
+                    <div class="text-center text-lg-start mt-4 pt-2">
+                        <button class="btn btn-primary" type="submit"
+                            style="font-size:medium; padding-left: 2.5rem; padding-right: 2.5rem;">Login</button>
+                    </div>
+
+                </form>
+            </div>
+        </div>
+    </div>
+
+</section>

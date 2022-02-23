@@ -7,51 +7,111 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Amelia</title>
   <link href="/stylesheets/style.css" rel="stylesheet" type="text/css" media="all" />
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
-    integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
 
-     <!-- Google Font -->
-    <link href="https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@300;400;600;700;800;900&display=swap"
+
+  <!-- Google Font -->
+  <link href="https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@300;400;600;700;800;900&display=swap"
     rel="stylesheet">
 
-    <!-- Css Styles -->
-    <link rel="stylesheet" href="/stylesheets/bootstrap.min.css" type="text/css">
-    <link rel="stylesheet" href="/stylesheets/font-awesome.min.css" type="text/css">
-    <link rel="stylesheet" href="/stylesheets/elegant-icons.css" type="text/css">
-    <link rel="stylesheet" href="/stylesheets/magnific-popup.css" type="text/css">
-    <link rel="stylesheet" href="/stylesheets/nice-select.css" type="text/css">
-    <link rel="stylesheet" href="/stylesheets/owl.carousel.min.css" type="text/css">
-    <link rel="stylesheet" href="/stylesheets/slicknav.min.css" type="text/css">
-    <link rel="stylesheet" href="/stylesheets/style.css" type="text/css">
-    <link rel="stylesheet" href="/stylesheets/signup.css" type="text/css">
+  <!-- Css Styles -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" integrity="sha512-9usAa10IRO0HhonpyAIVpjrylPvoDwiPUiKdWk5t3PyolY1cOd4DSE0Ga+ri4AuTroPR5aQvXU9xC6qOPnzFeg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+  {{!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"> --}}
+  <link rel="stylesheet" href="/stylesheets/bootstrap.min.css" type="text/css">
+  <link rel="stylesheet" href="/stylesheets/elegant-icons.css" type="text/css">
+  <link rel="stylesheet" href="/stylesheets/magnific-popup.css" type="text/css">
+  <link rel="stylesheet" href="/stylesheets/nice-select.css" type="text/css">
+  <link rel="stylesheet" href="/stylesheets/owl.carousel.min.css" type="text/css">
+  <link rel="stylesheet" href="/stylesheets/slicknav.min.css" type="text/css">
+  <link rel="stylesheet" href="/stylesheets/style.css" type="text/css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/cropperjs/1.5.5/cropper.min.css" integrity="sha512-Aix44jXZerxlqPbbSLJ03lEsUch9H/CmnNfWxShD6vJBbboR+rPdDXmKN+/QjISWT80D4wMjtM4Kx7+xkLVywQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+  {{!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script> --}}
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 
-  <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous"/>
-</svg>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/cropperjs/1.5.5/cropper.min.js" integrity="sha512-E4KfIuQAc9ZX6zW1IUJROqxrBqJXPuEcDKP6XesMdu2OV4LW7pj8+gkkyx2y646xEV7yxocPbaTtk2LQIJewXw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.2/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+ 
 </head>
 
 <body>
-  
-  
-  {{>user-header}}
- 
-  {{{body}}}
-  {{>footer}}
- 
 
-    <script src="/javascripts/javascript.js"></script>
-    <script src="/javascripts/jquery-3.3.1.min.js"></script>
-    <script src="/javascripts/jquery.nice-select.min.js"></script>
-    <script src="/javascripts/jquery.nicescroll.min.js"></script>
-    <script src="/javascripts/jquery.magnific-popup.min.js"></script>
-    <script src="/javascripts/jquery.countdown.min.js"></script>
-    <script src="/javascripts/jquery.slicknav.js"></script>
-    <script src="/javascripts/mixitup.min.js"></script>
-    <script src="/javascripts/owl.carousel.min.js"></script>
-    <script src="/javascripts/main.js"></script>
+  {{#if admin}}
+  {{>admin-header}}
+  {{>sidebar}}
+  {{/if}}
+
+  {{#if head}}
+  {{>user-header}}
+  {{/if}}
+
+  {{{body}}}
+
+  {{#if footer}}
+  {{>footer}}
+  {{/if}}
+
+
+  
  
+  <script src="/javascripts/jquery-3.3.1.min.js"></script>
+  <script src="/javascripts/jquery.nicescroll.min.js"></script>
+  <script src="/javascripts/jquery.nice-select.min.js"></script>
+  <script src="/javascripts/jquery.magnific-popup.min.js"></script>
+  <script src="/javascripts/jquery.countdown.min.js"></script>
+  <script src="/javascripts/jquery.slicknav.js"></script>
+  <script src="/javascripts/mixitup.min.js"></script>
+  <script src="/javascripts/owl.carousel.min.js"></script>
+  <script src="/javascripts/main.js"></script>
+
+
+ 
+   
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
     integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
     crossorigin="anonymous"></script>
+
+    <script src="/javascripts/javascript.js"></script>
+
+  <script>
+    var hamburger = document.querySelector(".hamburger");
+    hamburger.addEventListener("click", function () {
+      document.querySelector("body").classList.toggle("active");
+    })
+  </script>
+
+  <script>
+    $('#Category').on('change', function () {
+      $('#subCat').show()
+      let cat = this.value
+      $.ajax({
+        type: "get",
+        url: '/admin/getsub',
+        data: {
+          "cat": cat,
+        },
+        success: function (subCat) {
+
+          $('#subCat')[0].options.length = 0;
+
+          var subArray = subCat[0].SubCategory;
+          subArray.forEach(elem => {
+            $('#subCat').append($('<option>',
+              {
+                value: elem,
+                text: elem
+              }));
+          })
+        },
+        error: function (error) {
+          
+        }
+      });
+    });
+  </script>
+
+
+
 </body>
 
 </html>

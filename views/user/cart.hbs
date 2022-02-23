@@ -1,0 +1,139 @@
+<!-- Shopping Cart Section Begin -->
+<section class="shopping-cart spad">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8">
+                <div class="shopping__cart__table">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Product</th>
+                                <th>Quantity</th>
+                                {{!-- <th>Total</th> --}}
+                                <th></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {{#each products}}
+                            <tr>
+
+                                <td class="product__cart__item">
+                                    <div class="product__cart__item__pic">
+                                        <img src="/product-images/{{this.product.Imageid.[0]}}" alt=""
+                                            style="height: 80px;width: 70px;">
+                                    </div>
+                                    <div class="product__cart__item__text">
+
+                                        <h6>{{this.product.Title}}</h6>
+                                        <h5>₹{{this.product.Price}}</h5>
+                                    </div>
+                                </td>
+
+                                <td class="quantity__item">
+
+                                    <button class="cart-item-count mr-3" id="minus_button"
+                                        onclick="changeQuantity('{{this._id}}','{{this.product._id}}',-1,'{{../user._id}}')">-</button>
+
+                                    <span name="button_disable" id="{{this.product._id}}">{{this.quantity}}</span>
+                                    <button class="cart-item-count ml-3" id="plus_button"
+                                        onclick="changeQuantity('{{this._id}}','{{this.product._id}}',1,'{{../user._id}}')">+</button>
+                                </td>
+
+                                {{!-- <td class="cart__price"><span>₹&nbsp;</span><span id="pro_price">
+                                        {{totalValue.total}} </span></td> --}}
+                                <td class="cart__close"><button style="border: none; border-radius: 20px;"
+                                        onclick="deleteProduct('{{this._id}}','{{this.product._id}}')"><i
+                                            class="fa fa-close"></i></button></td>
+
+                            </tr>
+                            {{/each}}
+                        </tbody>
+                    </table>
+                </div>
+                <div class="row">
+                    <div class="col-lg-6 col-md-6 col-sm-6">
+                        <div class="continue__btn">
+
+                            <a href="/category?cat={{cat.Category}}">Continue Shopping</a>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+            <div class="col-lg-4">
+                <div class="cart__discount">
+                    <h6>Discount codes</h6>
+                    <form action="#">
+                        <input type="text" placeholder="Coupon code">
+                        <button type="submit">Apply</button>
+                    </form>
+                </div>
+                <div class="cart__total">
+                    <h6>Cart total</h6>
+                    <ul>
+                        <p>{{cat.Category}}</p>
+                        <li>Price <span id="max_Total">{{totalValue.maxTotal}} </span><span>₹&nbsp;</span></li>
+                        <li>Discount <span id="discount_price">{{totalValue.discount}} </span><span>-₹&nbsp;</span></li>
+                        <hr>
+                        <li>Total Price <span id="total_price">{{totalValue.total}} </span><span>₹&nbsp;</span> </li>
+                    </ul>
+                    <a href="/place-orders" class="primary-btn">Proceed to checkout</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- Shopping Cart Section End -->
+{{!--
+<script>
+    $(document).ready(function () {
+        $('#minus_').prop('disabled', true)
+    })
+</script> --}}
+
+
+<script>
+    function changeQuantity(cartId, prodId, count, userId) {
+        let quantity = parseInt(document.getElementById(prodId).innerHTML)
+        count = parseInt(count)
+        $.ajax({
+            url: '/change-product-quantity',
+            data: {
+                user: userId,
+                cart: cartId,
+                product: prodId,
+                count: count,
+                quantity: quantity
+            },
+            method: 'post',
+            success: (response) => {
+                if (response.removeProduct) {
+                    alert("Product removed from cart")
+                    location.reload()
+                } 
+                else if (response.countCheck) {
+                    var alerted = localStorage.getItem('alerted') || '';
+                    if (alerted != 'yes') {
+                    alert("My alert.");
+                    localStorage.setItem('alerted','yes');
+                    }
+                    //alert("Not much Stock Exists")
+                    document.getElementById('plus_button').style.visibility = 'hidden';
+                }
+                else {
+                    console.log(response.total)
+                    document.getElementById('plus_button').style.visibility = 'visible';
+                    document.getElementById(prodId).innerHTML = quantity + count
+                    document.getElementById('total_price').innerHTML = response.total.total
+
+                    document.getElementById('max_Total').innerHTML = response.total.maxTotal
+                    document.getElementById('discount_price').innerHTML = response.total.discount
+                }
+            }
+        })
+    }
+</script>
+
+<script>
+    document.getElementsByClassName('button_disable')
+</script>

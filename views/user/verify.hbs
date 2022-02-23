@@ -6,7 +6,7 @@
           <div class="row g-0">
             <div class="col-md-6 col-lg-5 d-none d-md-block">
               <img
-                src="/images/login.jpeg"
+                src="/images/Login1.jpg"
                 alt="login form"
                 class="img-fluid" style="border-radius: 1rem 0 0 1rem; height: 600px;"
               />
@@ -30,6 +30,13 @@
                   </div>
 
                   <div style="color: tomato;">
+                      {{#if error}}
+                      {{error}}
+                      {{/if}}
+                  </div>
+
+
+                   <div style="color: tomato;">
                       {{#if err}}
                       {{err}}
                       {{/if}}
@@ -37,7 +44,7 @@
 
 
                   <div class="pt-1 mb-4">
-                    <button class="btn btn-dark btn-md btn-block" type="submit">Send OTP</button>
+                    <button class="btn btn-success btn-md btn-block" type="submit">Send OTP</button>
                   </div>
                  
                   
@@ -51,3 +58,4 @@
     </div>
   </div>
 </section>
+

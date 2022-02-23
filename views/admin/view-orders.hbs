@@ -1,0 +1,63 @@
+<script>
+    $(document).ready(function(){
+        $('.deliver_hover').click(function(e){
+            e.preventDefault()
+            var s = $(this).find('a').html()
+            console.log(s)
+            $($(this).find('a')).attr('disabled', true);
+            $($(this).find('a')).hide()
+        })
+        
+    })
+
+</script>
+
+<section style="padding-top: 4rem;">
+    <div class="row">
+        <div class="col-md-12 text-center">
+            <p class="admin-logo">MANAGE PRODUCTS</p>
+        </div>
+    </div>
+    <div class="d-flex justify-content-center" style="padding-top: 40px;">
+        <table class="table align-middle table-responsive-md card-product" id="ProductList" style="width:900px ;">
+            <thead>
+                <tr>
+                    <th scope="col">Order ID</th>
+                    <th scope="col">User ID</th>
+                    <th scope="col">Date</th>
+                    <th scope="col">Payment Method</th>
+                    <th scope="col">Price</th>
+                    <th scope="col">Status</th>
+                </tr>
+            </thead>
+            <tbody>
+                {{#each orders}}
+                <tr>
+                    <td>{{this._id}}</td>
+                    <td>{{this.userId}}</td>
+                    <td>{{this.date}}</td>
+                    <td>{{this.paymentMethod}}</td>
+                    <td>₹{{this.totalAmount}}</td>
+                    <td>
+                        <div class="dropdown1 header__top__links1">
+                            <button class="dropbtn1 disable_button" id="btn{{this._id}}">
+                                {{#if status}}
+                                <a href="" id="{{this._id}}">{{this.status}}</a>
+                                {{/if}}
+                                <i class="fa fa-caret-down"></i>
+                            </button>
+                            <div class="dropdown-content2" id="hover{{this._id}}" >
+                                <a href="/admin/status-change?status=Accepted&id={{this._id}}">Accept</a>
+                                <a href="/admin/status-change?status=Shipped&id={{this._id}}">Shipped</a>
+                                <a href="/admin/status-change?status=Delivered&id={{this._id}}" id="deliver_hover">Deliver</a>
+                                <a href="/admin/status-change?status=Canceled&id={{this._id}}">Cancel</a>
+                            </div>
+                        </div>
+                    </td>
+
+                </tr>
+                {{/each}}
+            </tbody>
+        </table>
+    </div>
+</section>

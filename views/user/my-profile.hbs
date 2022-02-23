@@ -1,0 +1,151 @@
+
+<script>
+    function myFunction() {
+        var element = document.getElementById("section-A");
+        element.classList.toggle("d-block");
+    }
+</script>
+
+
+<div class="container mt-5">
+    <div class="bs-example row">
+        <div class="col-md-4">
+
+            <div class="card" style="width: 18rem;">
+                <ul class="list-group list-group-flush" id="list">
+                    <li class="list-group-item active side_section" value="sectionA">Add Address</li>
+                    <li class="list-group-item side_section" value="sectionB">My Profile</li>
+                </ul>
+            </div>
+
+        </div>
+
+
+        <div class="col-md-8">
+
+
+            <div class="tab-content" id="list">
+                <div id="sectionA">
+                    <div id="click-div" onclick="myFunction()">+ ADD ADDRESS</div>
+                    <div id="section-A" class="tab-pane d-none mt-4">
+
+                        <form action="/add-address" method="post">
+                            <div class="form-row">
+                                <div class="form-group col-md-6">
+                                    <label for="inputEmail4">First Name</label>
+                                    <input type="text" name="firstname" class="form-control" id="inputEmail4"
+                                        placeholder="First Name">
+                                </div>
+                                <div class="form-group col-md-6">
+                                    <label for="inputEmail4">Last Name</label>
+                                    <input type="text" name="lastname" class="form-control" id="inputEmail4"
+                                        placeholder="Last Name">
+                                </div>
+                                <div class="form-group col-md-6">
+                                    <label for="inputEmail4">Email</label>
+                                    <input type="email" name="email" class="form-control" id="inputEmail4"
+                                        placeholder="Email">
+                                </div>
+                                <div class="form-group col-md-6">
+                                    <label for="inputEmail4">Phone</label>
+                                    <input type="text" name="phone" class="form-control" id="inputEmail4"
+                                        placeholder="Mobile Number">
+                                </div>
+
+                            </div>
+                            <div class="form-group">
+                                <label for="inputAddress">Address</label>
+                                <input type="text" class="form-control" id="inputAddress" name="address1"
+                                    placeholder="Street Address">
+                            </div>
+                            <div class="form-group">
+                                <label for="inputAddress2">Address 2</label>
+                                <input type="text" class="form-control" id="inputAddress2" name="address2"
+                                    placeholder="Apartment, studio, or floor">
+                            </div>
+
+                            <div class="form-row">
+                                <div class="form-group col-md-3">
+                                    <label for="inputZip">Zip</label>
+                                    <input type="text" class="form-control" name="pin" placeholder="Pincode" id="zip">
+                                </div>
+                                <div class="col-md-3">
+                                    <button type="button" id="pin_button" class="btn btn-warning"
+                                        style="margin-top: 32px;"
+                                        onclick="pinSearch(document.getElementById('zip').value)">Search</button>
+                                </div>
+
+                                <div class="spinner-border text-success" id="spinner" role="status"
+                                    style=" margin-top: 30px; margin-left: -163px;visibility: hidden;">
+                                    <span class="sr-only">Loading...</span>
+                                </div>
+
+                                <div class="form-group col-md-6" style="margin-left: 131px;">
+                                    <label for="inputOffice">Post Offie</label>
+                                    <input type="text" class="form-control" name="office" id="office"
+                                        placeholder="Post Office">
+                                </div>
+                            </div>
+
+
+
+                            <div class="form-row">
+                                <div class="form-group col-md-6">
+                                    <label for="inputCity">City</label>
+                                    <input type="text" class="form-control" name="city" id="city" placeholder="City">
+                                </div>
+                                <div class="form-group col-md-4">
+                                    <label for="inputState">State</label>
+                                    <input type="text" list="state" id="state" name="state" class="form-control"
+                                        placeholder="Pick a State" />
+                                </div>
+
+
+
+
+                            </div>
+                            <button type="submit" class="btn btn-success btn-md">Submit</button>
+                        </form>
+                    </div>
+                    {{#each data}}
+                    <div class="mt-4">
+                        <div class="all_address pl-3 pt-3">
+                            <span class="address_text1">{{this.address.firstname}}</span>
+                            <span class="address_text1">{{this.address.lastname}}</span>
+                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                            <span class="address_text1">{{this.address.phone}}</span>
+                            <div class="pt-3">
+                                <span
+                                    class="address_text2">{{this.address.address1}},&nbsp;{{this.address.city}},&nbsp;{{this.address.state}}</span>
+                                <p class="address_text2">{{this.address.pin}}</p>
+                            </div>
+                        </div>
+                        <div class="pl-4">
+<                            
+                        </div>
+                    </div>
+                    {{/each}}
+                </div>
+
+                <div id="sectionB" class="tab-pane">
+                    <h3>Section B</h3>
+                    <p>Vestibulum nec erat eu nulla rhoncus fringilla ut non neque. Vivamus nibh urna, ornare id gravida
+                        ut,
+                        mollis a magna. Aliquam porttitor condimentum nisi, eu viverra ipsum porta ut. Nam hendrerit
+                        bibendum turpis, sed molestie mi fermentum id. Aenean volutpat velit sem. Sed consequat ante in
+                        rutrum convallis. Nunc facilisis leo at faucibus adipiscing.</p>
+                </div>
+                <div id="sectionC" class="tab-pane">
+                    <h3>Section C</h3>
+                    <p>Vestibulum nec erat eu nulla rhoncus fringilla ut non neque. Vivamus nibh urna, ornare id gravida
+                        ut,
+                        mollis a magna. Aliquam porttitor condimentum nisi, eu viverra ipsum porta ut. Nam hendrerit
+                        bibendum turpis, sed molestie mi fermentum id. Aenean volutpat velit sem. Sed consequat ante in
+                        rutrum convallis. Nunc facilisis leo at faucibus adipiscing.</p>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+</div>

@@ -8,6 +8,7 @@ var session=require('express-session')
 var fileUpload=require('express-fileupload')
 var db=require('./config/connection')
 
+
 var adminRouter = require('./routes/admin');
 var usersRouter = require('./routes/users');
 
@@ -20,10 +21,10 @@ app.engine('hbs',hbs.engine({extname:'hbs', defaultLayout:'layout',layoutsDir:__
 
 app.use(logger('dev'));
 app.use(express.json());
-app.use(express.urlencoded({ extended: false }));
+app.use(express.urlencoded({ extended: true }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
-app.use(session({secret:'Key',cookie:{maxAge:600000}}))
+app.use(session({secret:'Key',cookie:{maxAge:3000000}}))
 app.use(fileUpload())
 
 
