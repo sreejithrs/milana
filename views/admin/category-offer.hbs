@@ -1,0 +1,235 @@
+<section>
+  <div class="container align-items-center " style="padding-top: 4rem;">
+    <div class="justify-content-center d-flex">
+    <form id="CateOfferForm" method="post" name="formpro" onsubmit="return prosubmit()">
+          <div class="col-md-12 text-center">
+      <p class="admin-logo">CATEGORY OFFER</p>
+    </div>
+      <div class="col-md-12 card-product pt-4">
+        <div class="row">
+          <div class="col-md-12 d-flex m-4">
+            <div class="font-weight-bold text-uppercase mt-2">Offer Name :</div>
+            <div class="ml-3">
+              <input type="text" class="form-control col-md-6" name="offerType" value="category">
+              <small id="err"></small>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-12 d-flex m-4">
+            <div class="font-weight-bold text-uppercase mt-2">Category :</div>
+            <div class="ml-3">
+              <select name="offerItem" id="category">
+                <option value="selectcard">Select</option>
+                {{#each category}}
+                <option value="{{this.Category}}" name="offerType">{{this.Category}}</option>
+                {{/each}}
+
+              </select>
+              <small id="err"></small>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-12 d-flex m-4">
+            <div class="font-weight-bold text-uppercase mt-2">Offer Percentage</div>
+            <div class="ml-3">
+              <input type="text" name="discount" class="form-control">
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-12 d-flex m-4">
+            <div class="font-weight-bold text-uppercase mt-2">Expiry</div>
+            <div class="ml-3">
+              <input class="form-control" id="exp_date" name="validity" type="date" required>
+              <small id="err2"></small>
+            </div>
+          </div>
+        </div>
+        <div class="text-center mt-4 pb-4">
+          <button class="btn btn-success" type="submit">Submit</button>
+        </div>
+      </div>
+    </form>
+    </div>
+  </div>
+  <div class="d-flex justify-content-center mt-5">
+    <div class="col-md-6">
+      <table class="table table-bordered table-striped">
+        <thead>
+          <tr>
+            <th>Type of Offer</th>
+            <th>Offer Items</th>
+            <th>Discount</th>
+            <th>Validity</th>
+            <th>Actions</th>
+            <th><span class="glyphicon glyphicon-remove"></span></th>
+          </tr>
+        </thead>
+        {{#each offerview}}
+        <tbody id="game-table">
+          <tr>
+            <!-- Here will be added the games -->
+            <td>{{this.offerType}}</td>
+            <td>{{this.offerItem}}</td>
+            <td>{{this.discount}}</td>
+            <td>{{this.validity}}</td>
+            <td><a onclick="deleteCatOffer('{{this._id}}','{{this.offerItem}}')" class="btn btn-danger">delete</a></td>
+          </tr>
+
+        </tbody>
+        {{/each}}
+      </table>
+    </div>
+  </div>
+</section>
+
+
+<script>
+
+
+  var today = new Date();
+  var dd = String(today.getDate()).padStart(2, '0');
+  var mm = String(today.getMonth() + 1).padStart(2, '0');
+  var yyyy = today.getFullYear();
+
+  today = yyyy + '-' + mm + '-' + dd;
+  $('#exp_date').attr('min', today);
+
+
+
+
+
+  $('#getcategoryoffer').on("submit", (e) => {
+    console.log("api")
+    $.ajax({
+      url: "/admin/categoryoffer/placecatoffer",
+      method: "post",
+      data: $("#getcategoryoffer").serialize(),
+      success: function (response) {
+        if (response) {
+          // alert("Form submitted successfully")
+          location.replace('/user-signin')
+        } else {
+
+        }
+
+      },
+      error: function (err) {
+        // alert("Something Error")
+      }
+    })
+  })
+</script>
+
+<script>
+  //Pro Submit
+  function prosubmit() {
+
+    var offerType = document.formpro.offerType;
+    var offerItem = document.formpro.offerItem;
+    var discount = document.formpro.discount;
+    var validity = document.formpro.validity;
+    if (offerType.value.length <= 0) {
+      document.getElementById('err').innerHTML = 'Offer Type is required'
+      offerType.focus();
+      return false;
+    } else if (offerItem.value.length <= 0) {
+      document.getElementById('err1').innerHTML = 'Offer Item is required'
+      offerItem.focus();
+      return false;
+    } else if (validity.value.length <= 0) {
+      document.getElementById('err2').innerHTML = 'Offer validity is required'
+      validity.focus();
+      return false;
+    } else if (discount.value.length <= 0) {
+      document.getElementById('err3').innerHTML = 'Offer discount is required'
+      discount.focus();
+      return false;
+    } else {
+      return true;
+    }
+  }
+
+  //Delte category Offer
+
+  function deleteCatOffer(catOfferId, offerItem) {
+    const swalWithBootstrapButtons = Swal.mixin({
+      customClass: {
+        confirmButton: 'btn btn-success',
+        cancelButton: 'btn btn-danger'
+      },
+      buttonsStyling: false
+    })
+    swalWithBootstrapButtons.fire({
+      title: 'Are you sure?',
+      text: "You won't be able to revert this!",
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonText: 'Yes, delete it!',
+      cancelButtonText: 'No, cancel!',
+      reverseButtons: true
+    }).then((result) => {
+      if (result.isConfirmed) {
+        $.ajax({
+          url: "/admin/deleteOffer",
+          method: "POST",
+          data: { catOfferId, offerItem },
+          success: (response) => {
+            if (response) {
+
+              swalWithBootstrapButtons.fire(
+                'Deleted!',
+                'Your file has been deleted.',
+                'success'
+              )
+              location.reload()
+            }
+          }
+        })
+      } else if (
+        /* Read more about handling dismissals below */
+        result.dismiss === Swal.DismissReason.cancel
+      ) {
+        swalWithBootstrapButtons.fire(
+          'Cancelled',
+          'Your imaginary file is safe :)',
+          'error'
+        )
+      }
+    })
+  }
+
+
+  //Category form Submit
+
+  $('#CateOfferForm').submit((e) => {
+    e.preventDefault()
+    $.ajax({
+      url: '/admin/category-offer',
+      method: 'post',
+      data: $('#CateOfferForm').serialize(),
+      success: (response) => {
+        if (response.Exist) {
+          Swal.fire({
+            icon: 'warning',
+            title: 'This category aready Exist!',
+            showConfirmButton: false,
+            timer: 2500
+          })
+        } else {
+          Swal.fire({
+            icon: 'success',
+            title: 'Offer Successfully Added !',
+            showConfirmButton: false,
+            timer: 2500
+          })
+          setTimeout(() => {
+            location.reload();
+          }, 2000)
+        }
+      }
+    })
+  })
+</script>

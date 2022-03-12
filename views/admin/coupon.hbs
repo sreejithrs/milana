@@ -1,0 +1,67 @@
+<section >
+    <div class="container align-items-center pb-5" style="padding-top: 4rem;">
+        <div class="justify-content-center d-flex">
+        
+
+        <div class="col-md-6 card-product pt-4">
+             <div class="col-md-12 text-center">
+            <p class="admin-logo">ADD COUPON</p>
+            </div>
+
+            <form id="coupon_code" action="">
+                <div class="container">
+                    <div class="row">
+                        <div class="form-group col-md-11 ml-3 mt-3">
+                            <label for="exampleInputEmail1">Coupon Code</label>
+                            <input type="text" name="coupon" class="form-control" id="exampleInputCoupon">
+                        </div>
+                        <div class="form-group col-md-11 ml-3 mt-3">
+                            <label for="exampleInputEmail1">Coupon Description</label>
+                            <input type="text" name="description" class="form-control" id="exampleInputdesc">
+                        </div>
+                        <div class="form-group col-md-11 ml-3 mt-3 ">
+                            <label for="exampleInputEmail1">Discount Percentage</label>
+                            <input type="text" name="discount" class="form-control" id="exampleInputdiscount">
+                        </div>
+                        <div class="col-md-11 m-3 mt-3 form-group">
+                            <label for="">Coupon Type</label><br>
+                            <select name="coupon_type"id="Coupon_Code">
+                                <option value="selectcard">Select</option>
+                                <option value="all" name="all" >For all Users</option>
+                                <option value="group" name="first">For First Users</option>
+
+                            </select><br><br><br>
+                        </div>
+                        <div class="form-group col-md-11 ml-3 mt-3 ">
+                            <label for="exampleInputEmail1">Duration of Coupon</label>
+                            <input type="datetime-local" name="duration" class="form-control" id="exampleInputDuration">
+                        </div>
+                        <div class="col-md-6 mt-2 ml-3" style="color: red; ">
+                            {{#if err}}
+                            {{err}}
+                            {{/if}}
+                        </div>
+                        <div class="col-md-12 mb-5 mt-4 " style="margin-left: 17px;">
+                            <button type="submit" class="btn btn-md btn-success">Submit</button>
+                        </div>
+
+
+
+                    </div>
+
+                </div>
+            </form>
+
+
+
+
+
+        </div>
+        </div>
+
+    </div>
+
+
+</section>
+
+

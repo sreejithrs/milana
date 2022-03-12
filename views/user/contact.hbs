@@ -1,0 +1,191 @@
+<!-- Map Begin -->
+<div class="map">
+    {{!-- <iframe
+        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d541.2935828753649!2d76.75101159691583!3d8.844277061662432!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0xd702d06a1b1a267d!2zOMKwNTAnMzkuOSJOIDc2wrA0NScwMy45IkU!5e0!3m2!1sen!2sin!4v1646886300808!5m2!1sen!2sin"></iframe>
+    --}}
+    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3942.3772135898166!2d76.74889601457231!3d8.844427993649015!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0xd702d06a1b1a267d!2zOMKwNTAnMzkuOSJOIDc2wrA0NScwMy45IkU!5e0!3m2!1sen!2sin!4v1647055985602!5m2!1sen!2sin" height="500" style="border:0;" allowfullscreen="" aria-hidden="false" tabindex="0"></iframe>
+</div>
+<!-- Map End -->
+
+<!-- Contact Section Begin -->
+<section class="contact spad">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-6 col-md-6">
+                <div class="contact__text">
+                    <div class="section-title">
+                        <span>Information</span>
+                        <h2>Contact Us</h2>
+                        <p>As you might expect of a company that began as a high-end interiors contractor, we pay
+                            strict attention.</p>
+                    </div>
+                    <ul>
+                        <li>
+                            <h4>Kollam</h4>
+                            <p>Valiyavila, Nadakkal, Aduthala P.O, Kerala 691579<br />+91-9744276104</p>
+                        </li>
+                        <li>
+                            <h4>Ernakulam</h4>
+                            <p>Pagamughal, Kakkanad, Ernakulam <br />+91-8078146104</p>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="col-lg-6 col-md-6">
+                <div class="contact__form">
+                    <form action="" id="submit-form">
+                        <div class="row">
+                            <div class="col-lg-6">
+                                <input type="text" onkeyup="contactNameValidate()" id="contact_Name" name="Name"
+                                    placeholder="Name">
+                                <div id="errormsg4" style="color: tomato;font-weight: 700;"></div>
+                            </div>
+                            <div class="col-lg-6">
+                                <input type="text" onkeyup="proEmailValidate()" id="contact_email" name="Email"
+                                    placeholder="Email">
+                                <div id="errormsg1" style="color: tomato;font-weight: 700;"></div>
+                            </div>
+                            <div class="col-lg-12">
+                                <textarea placeholder="Message" onkeyup="proMsgValidate()" name="Comment"
+                                    id="contact_msg"></textarea>
+                                <div id="errormsg3" style="color: tomato;font-weight: 700;"></div>
+                                <button type="submit" id="contact_btn" onclick="contactValidate(event)"
+                                    class="site-btn">Send
+                                    Message</button>
+                                <div class="spinner-border text-success" id="contact_spinner" role="status" style="visibility: hidden;">
+                                    <span class="sr-only">Loading...</span>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- Contact Section End -->
+
+
+
+<script>
+    function contactValidate(e) {
+        e.preventDefault()
+        if (contactNameValidate() == true && proEmailValidate() == true && proMsgValidate() == true) {
+            $('#contact_btn').hide()
+            $('#contact_spinner').removeAttr('style')
+             $('#contact_spinner').css('margin-left','80px')
+            $.ajax({
+                url: "https://script.google.com/macros/s/AKfycbzwsAKQtRTvwBJcZgwdVQOxKDQCXuOZg8R7Iz0BXuHErwcGGmXuOE4aQDXM0hEMwEoS/exec",
+                data: $("#submit-form").serialize(),
+                method: "post",
+                success: function (response) {
+                    window.location.reload()
+                     $('#contact_spinner').css('visibility','hidden')
+                    $('#contact_btn').show()
+                    var toastMixin = Swal.mixin({
+                        toast: true,
+                        icon: 'success',
+                        title: 'General Title',
+                        animation: false,
+                        position: 'bottom',
+                        showConfirmButton: false,
+                        timer: 2000,
+                        timerProgressBar: true,
+                        didOpen: (toast) => {
+                            toast.addEventListener('mouseenter', Swal.stopTimer)
+                            toast.addEventListener('mouseleave', Swal.resumeTimer)
+                        }
+                    });
+
+                    toastMixin.fire({
+                        animation: true,
+                        title: 'Form submitted successfully'
+                    })
+                },
+                error: function (err) {
+                    var toastMixin = Swal.mixin({
+                        toast: true,
+                        icon: 'success',
+                        title: 'General Title',
+                        animation: false,
+                        position: 'bottom',
+                        showConfirmButton: false,
+                        timer: 2500,
+                        timerProgressBar: true,
+                        didOpen: (toast) => {
+                            toast.addEventListener('mouseenter', Swal.stopTimer)
+                            toast.addEventListener('mouseleave', Swal.resumeTimer)
+                        }
+                    });
+
+                    toastMixin.fire({
+                        title: 'Please enter correct Details',
+                        icon: 'error'
+                    });
+
+                }
+            })
+
+        } else {
+
+            Swal.fire({
+                icon: 'error',
+                title: 'Oops...',
+                text: 'Incorrect Details!',
+                footer: '<a href="">Please fill the form properly?</a>'
+            }).then(() => {
+                $("#submit-form").trigger("reset");
+                $('#errormsg1').html("")
+                $('#errormsg3').html("")
+                $('#errormsg4').html("")
+            })
+
+        }
+    }
+
+    function contactNameValidate() {
+        var varname = $('#contact_Name').val();
+        var pattern = /^[a-zA-Z\\s]/;
+
+        if (varname == " ") {
+            $('#errormsg4').html("Name is mandatory");
+            return false;
+        } else if (varname.match(pattern)) {
+            $('#errormsg4').html("");
+            return true;
+        } else {
+            $('#errormsg4').html("Enter correct name");
+            return false;
+        }
+    }
+
+    function proEmailValidate() {
+        var varEmail = $('#contact_email').val();
+        var emailPattern = /^([\w-\.]+@([\w-]+\.)+[\w-]{2,4})?$/;
+
+        if (varEmail == "") {
+            $('#errormsg1').html("Email is mandatory");
+            return false;
+        } else if (varEmail.match(emailPattern)) {
+            $('#errormsg1').html("");
+            return true;
+        } else {
+            $('#errormsg1').html("Enter correct Email");
+            return false;
+        }
+
+    }
+
+
+    function proMsgValidate() {
+        var varMessage = $('#contact_msg').val();
+
+        if (varMessage == "") {
+            $('#errormsg3').html("Enter something please");
+            return false;
+        } else {
+            $('#errormsg3').html("");
+            return true;
+        }
+    }
+</script>
