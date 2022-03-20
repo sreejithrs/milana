@@ -183,8 +183,9 @@
                 'Deleted!',
                 'Your file has been deleted.',
                 'success'
-              )
-              location.reload()
+              ).then(()=>{
+                  location.reload()
+              })
             }
           }
         })
@@ -192,11 +193,7 @@
         /* Read more about handling dismissals below */
         result.dismiss === Swal.DismissReason.cancel
       ) {
-        swalWithBootstrapButtons.fire(
-          'Cancelled',
-          'Your imaginary file is safe :)',
-          'error'
-        )
+       
       }
     })
   }

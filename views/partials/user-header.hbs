@@ -1,14 +1,14 @@
 <!-- Offcanvas Menu Begin -->
-  
+
 <style>
     .badge {
-  position: absolute;
-  font-size: xx-small;
-  margin-left:9px;
-  margin-top: -15px;
-  background-color: var(--orange);
-  color: white;
-}
+        position: absolute;
+        font-size: xx-small;
+        margin-left: 9px;
+        margin-top: -15px;
+        background-color: var(--orange);
+        color: white;
+    }
 </style>
 <div class="offcanvas-menu-overlay"></div>
 <div class="offcanvas-menu-wrapper">
@@ -16,25 +16,25 @@
         <div class="offcanvas__links">
             <label class="dropdown">
                 <div class="dropdown1 ">
-                            <button class="dropbtn">
-                                {{#if user}}
-                                <a>{{user.name}}</a>
-                                {{else}}
-                                <a href="/login">Sign In</a>
-                                {{/if}}
+                    <button class="dropbtn">
+                        {{#if user}}
+                        <a>{{user.name}}</a>
+                        {{else}}
+                        <a href="/login">Sign In</a>
+                        {{/if}}
 
-                                {{#if user}}
-                                <i class="fa fa-caret-down"></i>
-                                {{/if}}
-                            </button>
+                        {{#if user}}
+                        <i class="fa fa-caret-down"></i>
+                        {{/if}}
+                    </button>
 
-                            {{#if user}}
-                            <div class="dropdown-content">
-                                <a href="/signup">My Profile</a>
-                                <a href="/login">My Orders</a>
-                                <a href="/logout">Logout</a>
-                            </div>
-                            {{/if}}
+                    {{#if user}}
+                    <div class="dropdown-content">
+                        <a href="/my-profile">My Profile</a>
+                        <a href="/login">My Orders</a>
+                        <a href="/logout">Logout</a>
+                    </div>
+                    {{/if}}
 
                 </div>
 
@@ -45,9 +45,9 @@
     </div>
     <div class="offcanvas__nav__option">
         <a href="#" class="search-switch"><img src="img/icon/search.png" alt=""></a>
-        <a href="#"><img src="img/icon/heart.png" alt=""></a>
-        <a href="#"><img src="img/icon/cart.png" alt=""> <span>0</span></a>
-        <div class="price">$0.00</div>
+        <a href="#"><img src="/images/heart.png" alt=""></a>
+        <a href="#"><img src="/images/cart.png" alt=""> <span>0</span></a>
+        {{!-- <div class="price">₹0.00</div> --}}
     </div>
     <div id="mobile-menu-wrap"></div>
 
@@ -87,7 +87,7 @@
 
                         </div>
                         <div class="header__top__links">
-                            <a href="#">About</a>
+                            <a href="/about">About</a>
                         </div>
                     </div>
                 </div>
@@ -116,17 +116,17 @@
                             </ul>
                         </li>
                         {{/each}}
-                        
+
 
                     </ul>
                 </nav>
             </div>
             <div class="col-lg-3 col-md-3">
                 <div class="header__nav__option">
-                    <a href="#" class="search-switch"><img src="img/icon/search.png" alt=""></a>
-                    <a href="#"><img src="img/icon/heart.png" alt=""></a>
-                    <a href="/cart"><img src="img/icon/cart.png" style="height: 20px; width: 18px;margin-top: -3px;" alt=""> <span class='badge badge-pill' id="cart-count">{{cartCount}}</span></a>
-                    <div class="price pl-1">₹0.00</div>
+                    {{#if user}}<a href="/wishlist"><img src="/images/heart.png" alt=""></a>{{/if}}
+                    <a href="/cart"><img src="/images/cart.png" style="height: 20px; width: 18px;margin-top: -3px;"
+                            alt=""> <span class='badge badge-pill' id="cart-count">{{cartCount}}</span></a>
+                    {{!-- <div class="price pl-1">₹0.00</div> --}}
                 </div>
             </div>
         </div>
@@ -134,3 +134,74 @@
     </div>
 </header>
 <!-- Header Section End -->
+
+<script>
+
+    function checkProSelected() {
+        if(checkColorSelected==true && checkSizeSelected==true){
+            alert('sing')
+            return true
+        }else{
+            alert('haha')
+            return false
+        }
+    }
+
+        function checkColorSelected(){
+        if ($('input[name=color-1]:checked')) {
+            aler('damnn')
+            return true;
+        }else {
+             alert('happy')
+            return false;
+        }
+    }
+
+    function checkSizeSelected(){
+        if ($('input[name=size-1]:checked')) {
+            alert('happppyyy')
+            return true;
+        }else {
+            alert('err selected Size')
+            return false;
+        }
+    }
+
+    function addCart(id) {
+        status =  checkProSelected()
+        if(status){
+        color=document.querySelector('input[name=color-1]:checked').value
+        size=document.querySelector('input[name=size-1]:checked').value
+        alert('all selected')
+        $.ajax({
+            url: '/add-to-bag?id=' + id + '&size=' + size + '&color=' + color,
+            method: 'get',
+            success: (response) => {
+                if (response.status) {
+                    let count = $('#cart-count').html()
+                    count = parseInt(count) + 1
+                    $('#cart-count').html(count)
+                }
+                Swal.fire({
+                    toast: true,
+                    icon: 'success',
+                    title: 'Product Added to Cart',
+                    animation: false,
+                    position: 'bottom',
+                    showConfirmButton: false,
+                    timer: 2000,
+                    timerProgressBar: true,
+                    didOpen: (toast) => {
+                        toast.addEventListener('mouseenter', Swal.stopTimer)
+                        toast.addEventListener('mouseleave', Swal.resumeTimer)
+                    }
+                })
+
+            }
+        })
+        }
+
+        return false;
+    }
+
+</script>

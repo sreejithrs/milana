@@ -1,10 +1,11 @@
 const mongoClient=require('mongodb').MongoClient
+require('dotenv').config()
 const state={
     db:null
 }
 
 module.exports.connect=function(done){
-    const url='mongodb://localhost:27017'
+    const url= process.env.MONGO_URI
     const dbname='milana'
 
     mongoClient.connect(url,(err,data)=>{

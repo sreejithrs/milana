@@ -1,38 +1,6 @@
 
-    <script language="javascript" type="text/javascript">
-        window.onload = function () {
-            var fileUpload = document.getElementById("fileupload");
-            fileUpload.onchange = function () {
-                if (typeof (FileReader) != "undefined") {
-                    var dvPreview = document.getElementById("dvPreview");
-                    dvPreview.innerHTML = "";
-                    var regex = /^([a-zA-Z0-9\s_\\.\-:])+(.jpg|.jpeg|.gif|.png|.bmp|.webp)$/;
-                    for (var i = 0; i < fileUpload.files.length; i++) {
-                        var file = fileUpload.files[i];
-                        if (regex.test(file.name.toLowerCase())) {
-                            var reader = new FileReader();
-                            reader.onload = function (e) {
-                                var img = document.createElement("IMG");
-                                img.height = "110";
-                                img.width = "90";
-                                img.src = e.target.result;
-                                dvPreview.appendChild(img);
-                            }
-                            reader.readAsDataURL(file);
-                        } else {
-                            alert(file.name + " is not a valid image file.");
-                            dvPreview.innerHTML = "";
-                            return false;
-                        }
-                    }
-                } else {
-                    alert("This browser does not support HTML5 FileReader.");
-                }
-            }
-        };
-    </script>
 
-<section style="height: 1300px;">
+<section>
     <div class="container align-items-center" style="padding-top: 8rem;">
 
         <div class="row justify-content-center">
@@ -47,22 +15,25 @@
         </div>
 
         <div class="row justify-content-center">
-            <div class="col-md-6" style="box-shadow: 0 8px 16px 0 rgba(218, 8, 8, 0.2);transition: 0.3s;height: 1050px;">
+            <div class="col-md-6 col-sm-6 col-10 mb-5" style="box-shadow: 0 8px 16px 0 rgba(218, 8, 8, 0.2);transition: 0.3s;">
                 <h2 class="text-center admin-logo pt-3">Edit Product</h2>
                 <form action="/admin/edit-product/{{product._id}}" method="post" enctype="multipart/form-data">
                     <label for="">Name</label>
-                    <input type="text" name="Name" class="form-control" value="{{product.Name}}">
+                    <input type="text" name="Name" onkeyup="proNameValidate()" class="form-control" value="{{product.Name}}">
+                    <div class="error-msg errormsg4"></div>
                     <br>
 
                     <div class="row">
                         <div class="col-md-6">
                             <label for="">Max Price</label>
-                            <input type="text" name="Maxprice" class="form-control" value="{{product.Maxprice}}">
+                            <input type="text" name="Maxprice" class="form-control" id="maxprice" onkeyup="maxPriceValidate()" value="{{product.Maxprice}}">
+                            <div class="error-msg" id="errormsg1"></div>
                             <br>
                         </div>
                         <div class="col-md-6">
                             <label for="">Price</label>
-                            <input type="text" name="Price" class="form-control" value="{{product.Price}}">
+                            <input type="text" name="Price" id="price" onkeyup="priceValidate()" class="form-control" value="{{product.Price}}">
+                            <dic class="error-msg" id="errormsg3"></dic>
                             <br>
                         </div>
 
@@ -127,15 +98,58 @@
 
                     <div class="mt-4">
                     <label for="">Stock</label>
-                    <input type="text" name="Stock" class="form-control" value="{{product.Stock}}">
+                    <input type="text" name="Stock" id="stock" class="form-control" onkeyup="stockValidate()" value="{{product.Stock}}">
+                    <div class="error-msg" id="errormsg2"></div>
                     </div>
 
                     <div class="mt-4">
 
-                        <div>
-                            <label for="" class="mt-2">Image</label>
-                            <input type="file" name="image" id="fileupload"
-                                class="form-control mt-1" multiple>
+                        <div class="row">
+                            {{!-- --------1---------- --}}
+                            <div class="mb-3  col-lg-12 mt-3">
+                                <img src="" id="imgView1" alt="" style="width:100px">
+                                <input type="file" id="id_image1" class="form-control" name="image1" accept="image/*"
+                                    onchange="viewImage1(event)"><br>
+                                <div id="image-box1" class="image-container"></div>
+                                <button class="btn btn-outline-info" id="crop-btn1"
+                                    style="width: 100%; margin-top: 10px; display: none;" type="button">Crop</button>
+                            </div>
+                             <div id="imagePreview"></div>
+                            {{!-- --------2---------- --}}
+
+
+                            <div class="mb-3  col-lg-12 mt-3">
+                                <img src="" id="imgView2" alt="" style="width:100px">
+                                <input type="file" id="id_image2" class="form-control" name="image2" accept="image/*"
+                                    onchange="viewImage2(event)"><br>
+                                <div id="image-box2" class="image-container"></div>
+                                <button class="btn btn-outline-info" id="crop-btn2"
+                                    style="width: 100%; margin-top: 10px; display: none;" type="button">Crop</button>
+                            </div>
+                            {{!-- --------3---------- --}}
+
+                            <div class="mb-3  col-lg-12 mt-3">
+                                <img src="" id="imgView3" alt="" style="width:100px">
+                                <input type="file" id="id_image3" class="form-control" name="image3" accept="image/*"
+                                    onchange="viewImage3(event)"><br>
+                                <div id="image-box3" class="image-container"></div>
+                                <button class="btn btn-outline-info" id="crop-btn3"
+                                    style="width: 100%; margin-top: 10px; display: none;" type="button">Crop</button>
+                            </div>
+
+                             {{!-- --------4---------- --}}
+
+                            <div class="mb-3  col-lg-12 mt-3">
+                                <img src="" id="imgView4" alt="" style="width:100px">
+                                <input type="file" id="id_image4" class="form-control" name="image4" accept="image/*"
+                                    onchange="viewImage4(event)"><br>
+                                <div id="image-box4" class="image-container"></div>
+                                <button class="btn btn-outline-info" id="crop-btn4"
+                                    style="width: 100%; margin-top: 10px; display: none;" type="button">Crop</button>
+                            </div>
+                          
+
+                           
                         </div>
 
                         <div id="dvPreview" class="mt-2">
@@ -149,8 +163,8 @@
 
                     </div>
 
-                    <div class="mt-4">
-                        <button class="btn btn-success">Edit Product</button>
+                    <div class="mt-4 mb-4">
+                        <button type="submit" class="btn btn-success" onclick="return proValidate()">Edit Product</button>
                     </div>
 
                 </form>

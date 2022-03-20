@@ -7,9 +7,9 @@
     <div class="d-flex justify-content-center">
 
 
-        <div class="row" style="margin-top:40px ;">
+        <div class="row" style="margin-top:40px;">
             <div class="col-md-12">
-                <table class="table card-product align-middle table-responsive-md" style="width: 800px;">
+                <table class="table card-product align-middle table-responsive-sm table-responsive-lg table-responsive-md" id="UserList">
                     <thead>
                         <tr>
                             <th scope="col">Name</th>
@@ -55,3 +55,9 @@
     </div>
   
 </section>
+
+<script>
+    $(document).ready( function () {
+      $('#UserList').DataTable();
+    });
+</script>

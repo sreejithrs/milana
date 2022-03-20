@@ -1,20 +1,4 @@
-    <!-- Breadcrumb Section Begin -->
-    <section class="breadcrumb-option">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-12">
-                    <div class="breadcrumb__text">
-                        <h4>Shop</h4>
-                        <div class="breadcrumb__links">
-                            <a href="./index.html">Home</a>
-                            <span>Shop</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-    <!-- Breadcrumb Section End -->
+{{!-- 
 
     <!-- Shop Section Begin -->
     <section class="shop spad">
@@ -52,23 +36,7 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="card">
-                                    <div class="card-heading">
-                                        <a data-toggle="collapse" data-target="#collapseTwo">Branding</a>
-                                    </div>
-                                    <div id="collapseTwo" class="collapse show" data-parent="#accordionExample">
-                                        <div class="card-body">
-                                            <div class="shop__sidebar__brand">
-                                                <ul>
-                                                    <li><a href="#">Louis Vuitton</a></li>
-                                                    <li><a href="#">Chanel</a></li>
-                                                    <li><a href="#">Hermes</a></li>
-                                                    <li><a href="#">Gucci</a></li>
-                                                </ul>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
+                              
                                 <div class="card">
                                     <div class="card-heading">
                                         <a data-toggle="collapse" data-target="#collapseThree">Filter Price</a>
@@ -88,97 +56,8 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="card">
-                                    <div class="card-heading">
-                                        <a data-toggle="collapse" data-target="#collapseFour">Size</a>
-                                    </div>
-                                    <div id="collapseFour" class="collapse show" data-parent="#accordionExample">
-                                        <div class="card-body">
-                                            <div class="shop__sidebar__size">
-                                                <label for="xs">xs
-                                                    <input type="radio" id="xs">
-                                                </label>
-                                                <label for="sm">s
-                                                    <input type="radio" id="sm">
-                                                </label>
-                                                <label for="md">m
-                                                    <input type="radio" id="md">
-                                                </label>
-                                                <label for="xl">xl
-                                                    <input type="radio" id="xl">
-                                                </label>
-                                                <label for="2xl">2xl
-                                                    <input type="radio" id="2xl">
-                                                </label>
-                                                <label for="xxl">xxl
-                                                    <input type="radio" id="xxl">
-                                                </label>
-                                                <label for="3xl">3xl
-                                                    <input type="radio" id="3xl">
-                                                </label>
-                                                <label for="4xl">4xl
-                                                    <input type="radio" id="4xl">
-                                                </label>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="card">
-                                    <div class="card-heading">
-                                        <a data-toggle="collapse" data-target="#collapseFive">Colors</a>
-                                    </div>
-                                    <div id="collapseFive" class="collapse show" data-parent="#accordionExample">
-                                        <div class="card-body">
-                                            <div class="shop__sidebar__color">
-                                                <label class="c-1" for="sp-1">
-                                                    <input type="radio" id="sp-1">
-                                                </label>
-                                                <label class="c-2" for="sp-2">
-                                                    <input type="radio" id="sp-2">
-                                                </label>
-                                                <label class="c-3" for="sp-3">
-                                                    <input type="radio" id="sp-3">
-                                                </label>
-                                                <label class="c-4" for="sp-4">
-                                                    <input type="radio" id="sp-4">
-                                                </label>
-                                                <label class="c-5" for="sp-5">
-                                                    <input type="radio" id="sp-5">
-                                                </label>
-                                                <label class="c-6" for="sp-6">
-                                                    <input type="radio" id="sp-6">
-                                                </label>
-                                                <label class="c-7" for="sp-7">
-                                                    <input type="radio" id="sp-7">
-                                                </label>
-                                                <label class="c-8" for="sp-8">
-                                                    <input type="radio" id="sp-8">
-                                                </label>
-                                                <label class="c-9" for="sp-9">
-                                                    <input type="radio" id="sp-9">
-                                                </label>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="card">
-                                    <div class="card-heading">
-                                        <a data-toggle="collapse" data-target="#collapseSix">Tags</a>
-                                    </div>
-                                    <div id="collapseSix" class="collapse show" data-parent="#accordionExample">
-                                        <div class="card-body">
-                                            <div class="shop__sidebar__tags">
-                                                <a href="#">Product</a>
-                                                <a href="#">Bags</a>
-                                                <a href="#">Shoes</a>
-                                                <a href="#">Fashio</a>
-                                                <a href="#">Clothing</a>
-                                                <a href="#">Hats</a>
-                                                <a href="#">Accessories</a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
+                               
+                                
                             </div>
                         </div>
                     </div>
@@ -207,7 +86,7 @@
                         {{#each prod}}
                         <div class="col-lg-4 col-md-6 col-sm-6">
                             <div class="product__item">
-                                <a href="/product/{{this._id}}">
+                                <a href="/product?id={{this._id}}">
                                 <div class="product__item__pic set-bg" data-setbg="/product-images/{{this.Imageid.[0]}}">
                                     <ul class="product__hover">
                                         <li><a href="#"><img src="img/icon/heart.png" alt=""></a></li>
@@ -256,4 +135,284 @@
             </div>
         </div>
     </section>
-    <!-- Shop Section End -->
+    <!-- Shop Section End --> --}}
+
+
+        <style>
+    #searchbar{
+     border-color: rgb(202, 202, 236);
+     padding:15px;
+     border-radius: 10px;
+   }
+ 
+   input[type=text] {
+      width: 30%;
+      -webkit-transition: width 0.15s ease-in-out;
+      transition: width 0.15s ease-in-out;
+   }
+ 
+   /* When the input field gets focus,
+        change its width to 100% */
+   input[type=text]:focus {
+     width: 70%;
+   }
+ 
+  #list{
+    font-size:  1.5em;
+    margin-left: 90px;
+   }
+ 
+.animals{
+   display: list-item;    
+  } 
+</style>
+<section class="shop spad">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-3">
+                <div class="shop__sidebar">
+                    <div class="shop__sidebar__search">
+                        <form action="#">
+                            <input id="searchbar" onkeyup="search_product()" type="text" name="search" placeholder="Search...">
+                            <button type="submit"><span class="icon_search"></span></button>
+                        </form>
+                    </div>
+                    <div class="shop__sidebar__accordion">
+                        <div class="accordion" id="accordionExample">
+                            <div class="card">
+                                <div class="card-heading">
+                                    <a data-toggle="collapse" data-target="#collapseOne">Categories</a>
+                                </div>
+                                <div id="collapseOne" class="collapse show" data-parent="#accordionExample">
+                                    <div class="card-body">
+                                        <div class="shop__sidebar__categories">
+                                            <ul class="nice-scroll">
+                                                {{#each cat}}
+                                                <li><a href="/category?cat={{this.Category}}">{{this.Category}}</a></li>
+                                                {{/each}} 
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="card">
+                                <div class="card-heading">
+                                    <a data-toggle="collapse" data-target="#collapseThree">Filter Price</a>
+                                </div>
+                                <div id="collapseThree" class="collapse show" data-parent="#accordionExample">
+                                    <div class="card-body">
+                                        <div class="shop__sidebar__price">
+                                            <ul>
+                                                <li><a href="javascript:onclickFunction1(399,799,'{{cat1}}','{{subcat}}')">₹399 - ₹799</a></li>
+                                                <li><a href="javascript:onclickFunction1(800,1999,'{{cat1}}','{{subcat}}')">₹800 - ₹1999</a></li>
+                                                <li><a href="javascript:onclickFunction1(2000,2999,'{{cat1}}','{{subcat}}')">₹2000 - ₹2999</a></li>
+                                                <li><a href="javascript:onclickFunction1(3000,5000,'{{cat1}}','{{subcat}}')">₹3000 - ₹5000</a></li>
+                                                <li><a href="javascript:onclickFunction1(5000,0,'{{cat1}}','{{subcat}}')">₹5000+</a></li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-9">
+                <div class="shop__product__option">
+                    <div class="row">
+                        <div class="col-lg-6 col-md-6 col-sm-6">
+                            {{!-- <div class="shop__product__option__left">
+                                <p>Showing 1–12 of 126 results</p>
+                            </div> --}}
+                        </div>
+                        <div class="col-lg-6 col-md-6 col-sm-6">
+                            <div class="shop__product__option__right">
+                                <p>Sort by Price:</p>
+                                <select id="low-to-high1">
+                                    <option value="low,hig,{{cat1}},{{subcat}}">Select</option>
+                                    <option value="low,hig,{{cat1}},{{subcat}}">Low To High</option>
+                                    <option value="sta,fin,{{cat1}},{{subcat}}">High to low</option>
+                                    <option value="000,399,{{cat1}},{{subcat}}">₹399 - ₹799</option>
+                                    <option value="400,799,{{cat1}},{{subcat}}">₹800 - ₹1399</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row list-wrapper" id="filter-products1">
+                    {{#each prod}}
+                    <div class="col-lg-4 col-md-6 col-sm-6 hide-div  list-item">
+                        <div class="product__item">
+                            <a href="/product?id={{this._id}}" target="_blank">
+                                <div class="product__item__pic set-bg"
+                                    data-setbg="/product-images/{{this.Imageid.[0]}}">
+
+                                </div>
+
+                            </a>
+                            <div class="product__item__text">
+                                <h6 class="brand">{{this.Name}}</h6>
+                                <h6 class=" text-truncate">{{this.Title}}</h6>
+                                <ul class="product__hover">
+                                    <li>          
+                                        <a href="javascript:addToWishlet('{{this._id}}','{{../user._id}}')" >
+                                        {{#if ../user._id}}
+                                        {{#if (eq this.output.[0].userId ../user._id)}}<i class="fa fa-heart" style="font-size:22px;padding-left: 13rem !important;color: red;" id="heart-{{this._id}}"></i><i class="fa fa-heart-o" id="{{this._id}}" style="font-size:22px;padding-left: 13rem !important;display: none;"></i>
+                                        {{else}}<i class="fa fa-heart" style="display: none;font-size:22px;padding-left: 13rem !important;color: red;" id="heart-{{this._id}}"></i><i class="fa fa-heart-o" id="{{this._id}}" style="font-size:22px;padding-left: 13rem !important;"></i>{{/if}} 
+                                        {{else}}<i class="fa fa-heart" style="display: none;font-size:22px;padding-left: 13rem !important;color: red;" id="heart-{{this._id}}"></i><i class="fa fa-heart-o" id="{{this._id}}" style="font-size:22px;padding-left: 13rem !important;"></i> {{/if}}  </a>
+                                         
+                                    </li>
+
+                                </ul>
+                               
+                                <div class="rating">
+                                   
+                                </div>
+                                <h5>₹ {{this.Price}}</h5> <span
+                                    style="color: #b7b7b7;font-size: 15px;font-weight: 400;text-decoration: line-through;">₹
+                                    {{this.Maxprice}}</span></h3>
+                                <div class="product__color__select">
+                                    {{#each Colour}}
+                                    <label class="{{this}}" for="pc-6">
+                                        <input type="radio" id="">
+                                    </label>
+                                    {{/each}}
+                                </div>
+                            </div>
+                        </div> 
+                    </div>
+                    {{/each}}
+                </div>
+                <div id="pagination-container"></div>
+            </div>
+        </div>
+</section>
+<!-- Shop Section End -->
+
+
+<script>
+    function search_product() {
+    let input = document.getElementById('searchbar').value
+    input=input.toLowerCase();
+    let x = document.getElementsByClassName('brand');
+    let d= document.getElementsByClassName('hide-div')
+    for (i = 0; i < x.length; i++) { 
+        if (!x[i].innerHTML.toLowerCase().includes(input)) {
+           x[i].style.display="none";
+           d[i].style.display = "none";
+        }
+        else {
+            x[i].style.display="list-item";
+            d[i].style.display = "block";
+        }
+    }
+}
+</script>
+
+
+  <script>
+        $('#low-to-high1').on('change', function() {
+         var val=$(this).find(":selected").val()
+         $.ajax({
+            url:'/low-to-high1?val='+val,
+            method:'get',
+            success:(res)=>{
+                console.log(res)
+                html=""
+                for(i=0;i<res.length;i++){
+                     if(res.length==0){
+                        $('#filter-products1').html(`<img src='/images/no_result.png'>`);
+                     }
+                     html=html+`<div class="col-lg-4 col-md-6 col-sm-6 hide-div">
+                        <div class="product__item">
+                            <a href="/product/${res[i]._id}" target="_blank">
+                                <div class="product__item__pic set-bg"
+                                    data-setbg="/product-images/${res[i].Imageid[0]}" style="background-image :url('/product-images/${res[i].Imageid[0]}')">
+
+                                </div>
+
+                            </a>
+                            <div class="product__item__text">
+                                <h6 class="brand"></h6>
+                                <h6 class=" text-truncate">${res[i].Name}</h6>
+                                <ul class="product__hover">
+                                    <li><a href="#"><img style="padding-left: 13rem !important;"
+                                                src="img/icon/heart.png" alt=""></a></li>
+
+                                </ul>
+                               
+                               
+                                <h5>₹ ${res[i].Price}</h5> <span
+                                    style="color: #b7b7b7;font-size: 15px;font-weight: 400;text-decoration: line-through;">₹
+                                    ${res[i].Maxprice}</span></h3>
+                                <div class="product__color__select">
+                                   
+                                    
+                                 
+                                </div>
+                            </div>
+                        </div>
+                    </div>`
+
+                    $('#filter-products1').html(html)
+                }
+
+            }
+         })
+        });
+  </script>
+
+  <script>
+    function onclickFunction1(val1,val2,cat,subcat){
+        $.ajax({
+            url:'/price-filter1?val1='+val1+'&val2='+val2+'&cat='+cat+'&subcat='+subcat,
+            method:'get',
+            success:(res)=>{
+                if(res.length==0){
+                      $('#filter-products1').html(`<img src='/images/no_result.png'>`);
+                }
+                html=""
+                for(i=0;i<res.length;i++){
+                     html=html+`<div class="col-lg-4 col-md-6 col-sm-6 hide-div">
+                        <div class="product__item">
+                            <a href="/product?id=${res[i]._id}" target="_blank">
+                                <div class="product__item__pic set-bg"
+                                    data-setbg="/product-images/${res[i].Imageid[0]}" style="background-image :url('/product-images/${res[i].Imageid[0]}')">
+
+                                </div>
+
+                            </a>
+                            <div class="product__item__text">
+                                <h6 class="brand"></h6>
+                                <h6 class=" text-truncate">${res[i].Name}</h6>
+                                <ul class="product__hover">
+                                    <li><a href="#"><img style="padding-left: 13rem !important;"
+                                                src="img/icon/heart.png" alt=""></a></li>
+
+                                </ul>
+                               
+                               
+                                <h5>₹ ${res[i].Price}</h5> <span
+                                    style="color: #b7b7b7;font-size: 15px;font-weight: 400;text-decoration: line-through;">₹
+                                    ${res[i].Maxprice}</span></h3>
+                                <div class="product__color__select">
+                                   
+                                    
+                                 
+                                </div>
+                            </div>
+                        </div>
+                    </div>`
+
+                    $('#filter-products1').html(html)
+                }
+
+            }
+        })
+    }
+  </script>
+
+

@@ -14,12 +14,25 @@ function verifyLogin(req, res, next) {
   }
 }
 
-router.get('/', function(req, res, next) {
-  let admin=req.session.admin
+router.get('/',async function(req, res, next) {
+    let admin=req.session.admin
     if(req.session.adminLogin){
-      res.render('admin/index',{admin})
+     let pro= await prodHelpers.getTotalPro()
+     let sales=await prodHelpers.getTotalSales()
+     let status=await prodHelpers.getTotalStatus()
+     let totalSales=await prodHelpers.getSalesTotal()
+     let weeklyReport=await prodHelpers.getweeklyreport()
+     let totUsers=await prodHelpers.getTotUsers()
+     let tot = totalSales.reduce(function (accumulator, item) {
+      return accumulator + item.totalAmount;
+    }, 0);
+    let totSale = sales.reduce(function (accumulator, item) {
+      return accumulator + item.total;
+    }, 0);
+    let proCount=pro.length
+    res.render('admin/index',{admin,pro,sales,'data':weeklyReport,status,tot,totSale,proCount,totUsers})
     }else{
-      res.render('admin/login',{ err: req.session.adminErr })
+      res.render('admin/login',{ err: req.session.adminErr})
       req.session.adminErr = false;
     }
 });
@@ -91,31 +104,91 @@ router.get("/getsub", verifyLogin, (req, res) => {
     });
 });
 
-router.post("/add-product",(req, res) => {
-  prodHelpers.addProduct(req.body).then((id)=>{
-    if (req.files) {
-      const file = req.files.image;
-      let fileArr=[]
-      for(i=0;i<file.length;i++){
-        var name= file[i].name
-        var ext = name.split(".")[1];
-      }
-      for (let i = 0; i < file.length; i++) {
-        file[i].mv("./public/product-images/" + id +"-"+ i + '.'+ ext, function (err) {
-          if (err) {
-            res.send(err);
-          }
-        });
-        fileArr.push(id+'-'+i+"."+ ext)
+// router.post("/add-product",(req, res) => {
+//   prodHelpers.addProduct(req.body).then((id)=>{
+//     if (req.files) {
+//       const file = req.files.image;
+//       let fileArr=[]
+//       for(i=0;i<file.length;i++){
+//         var name= file[i].name
+//         var ext = name.split(".")[1];
+//       }
+//       for (let i = 0; i < file.length; i++) {
+//         file[i].mv("./public/product-images/" + id +"-"+ i + '.'+ ext, function (err) {
+//           if (err) {
+//             res.send(err);
+//           }
+//         });
+//         fileArr.push(id+'-'+i+"."+ ext)
        
-      }
+//       }
+//       prodHelpers.updateId(fileArr,id).then(()=>{
+//         req.session.successMsg=true
+//         res.redirect('/admin/add-product')
+//       })
+//     }
+//   })
+// });
+
+router.post('/add-product', (req, res) => {
+  prodHelpers.addProduct(req.body).then((id) => {
+    let fileArr=[]
+    if(req.files.image4==undefined){
+      let image1=req.files.image1
+      let image2=req.files.image2
+      let image3=req.files.image3
+      let name1= image1.name
+      let name2= image2.name
+      let name3= image3.name
+      let ext1 = name1.split(".")[1];
+      let ext2 = name2.split(".")[1];
+      let ext3 = name3.split(".")[1];
+      image1.mv("./public/product-images/" + id +"-"+ 0 + '.'+ ext1)
+      image2.mv("./public/product-images/" + id +"-"+ 1 + '.'+ ext2)
+      image3.mv("./public/product-images/" + id +"-"+ 2 + '.'+ ext3)
+      fileArr.push(id+'-'+0+"."+ ext1)
+      fileArr.push(id+'-'+1+"."+ ext2)
+      fileArr.push(id+'-'+2+"."+ ext3)
       prodHelpers.updateId(fileArr,id).then(()=>{
         req.session.successMsg=true
         res.redirect('/admin/add-product')
       })
+    }else{
+    let image1=req.files.image1
+    let image2=req.files.image2
+    let image3=req.files.image3
+    let image4=req.files.image4
+    //Taking Image Name
+    let name1= image1.name
+    let name2= image2.name
+    let name3= image3.name
+    let name4= image4.name
+    
+    //Splitting Extension
+    let ext1 = name1.split(".")[1];
+    let ext2 = name2.split(".")[1];
+    let ext3 = name3.split(".")[1];
+    let ext4 = name4.split(".")[1];
+
+    //Moving Image to Folder
+    image1.mv("./public/product-images/" + id +"-"+ 0 + '.'+ ext1)
+    image2.mv("./public/product-images/" + id +"-"+ 1 + '.'+ ext2)
+    image3.mv("./public/product-images/" + id +"-"+ 2 + '.'+ ext3)
+    image4.mv("./public/product-images/" + id +"-"+ 3 + '.'+ ext4)
+    
+    //FileArray to store ImageId
+    fileArr.push(id+'-'+0+"."+ ext1)
+    fileArr.push(id+'-'+1+"."+ ext2)
+    fileArr.push(id+'-'+2+"."+ ext3)
+    fileArr.push(id+'-'+3+"."+ ext4)                                    
+
+    prodHelpers.updateId(fileArr,id).then(()=>{
+      req.session.successMsg=true
+      res.redirect('/admin/add-product')
+    })
     }
   })
-});
+})
 
 router.get("/all-products", verifyLogin, (req, res) => {
   prodHelpers.getAllProducts().then((products) => {
@@ -139,27 +212,61 @@ router.get("/edit-product/:id", verifyLogin, (req, res) => {
 
 router.post("/edit-product/:id", (req, res) => {
   prodHelpers.updateProduct(req.params.id, req.body).then(() => {
-    let id = req.params.id;
-    if (req.files) {
-      const file = req.files.image;
-      let fileArr=[]
-      for(i=0;i<file.length;i++){
-        var name= file[i].name
-        var ext = name.split(".")[1];
-      }
-      for (let i = 0; i < file.length; i++) {
-        file[i].mv("./public/product-images/" + id +"-"+ i + '.'+ ext, function (err) {
-          if (err) {
-            res.send(err);
-          }
-        });
-        fileArr.push(id+'-'+i+"."+ ext)
-       
-      }
+    let id=req.params.id
+    let fileArr=[]
+    if(req.files.image4==undefined){
+      let image1=req.files.image1
+      let image2=req.files.image2
+      let image3=req.files.image3
+      let name1= image1.name
+      let name2= image2.name
+      let name3= image3.name
+      let ext1 = name1.split(".")[1];
+      let ext2 = name2.split(".")[1];
+      let ext3 = name3.split(".")[1];
+      image1.mv("./public/product-images/" + id +"-"+ 0 + '.'+ ext1)
+      image2.mv("./public/product-images/" + id +"-"+ 1 + '.'+ ext2)
+      image3.mv("./public/product-images/" + id +"-"+ 2 + '.'+ ext3)
+      fileArr.push(id+'-'+0+"."+ ext1)
+      fileArr.push(id+'-'+1+"."+ ext2)
+      fileArr.push(id+'-'+2+"."+ ext3)
       prodHelpers.updateId(fileArr,id).then(()=>{
         req.session.successMsg=true
         res.redirect('/admin/all-products')
       })
+    }else{
+    let image1=req.files.image1
+    let image2=req.files.image2
+    let image3=req.files.image3
+    let image4=req.files.image4
+    //Taking Image Name
+    let name1= image1.name
+    let name2= image2.name
+    let name3= image3.name
+    let name4= image4.name
+    
+    //Splitting Extension
+    let ext1 = name1.split(".")[1];
+    let ext2 = name2.split(".")[1];
+    let ext3 = name3.split(".")[1];
+    let ext4 = name4.split(".")[1];
+
+    //Moving Image to Folder
+    image1.mv("./public/product-images/" + id +"-"+ 0 + '.'+ ext1)
+    image2.mv("./public/product-images/" + id +"-"+ 1 + '.'+ ext2)
+    image3.mv("./public/product-images/" + id +"-"+ 2 + '.'+ ext3)
+    image4.mv("./public/product-images/" + id +"-"+ 3 + '.'+ ext4)
+    
+    //FileArray to store ImageId
+    fileArr.push(id+'-'+0+"."+ ext1)
+    fileArr.push(id+'-'+1+"."+ ext2)
+    fileArr.push(id+'-'+2+"."+ ext3)
+    fileArr.push(id+'-'+3+"."+ ext4)                                    
+
+    prodHelpers.updateId(fileArr,id).then(()=>{
+      req.session.successMsg=true
+      res.redirect('/admin/all-products')
+    })
     }
   });
 });
@@ -240,8 +347,9 @@ router.get('/manage-category',verifyLogin,(req,res)=>{
 
 
 router.get('/edit-category',verifyLogin,(req,res)=>{
+  let admin=req.session.admin
   prodHelpers.getACategory(req.query.id).then((cat)=>{
-    res.render('admin/edit-category',{cat})
+    res.render('admin/edit-category',{cat,admin})
   })
 })
 
@@ -288,9 +396,82 @@ router.get('/status-change',verifyLogin,(req,res)=>{
   })
 })
 
-router.get("/logout", (req, res) => {
-  req.session.destroy();
-  res.redirect("/admin");
+router.get("/category-offer",verifyLogin,async(req,res)=>{
+  let offerview=await prodHelpers.getCategoryOffer()
+  let category=await prodHelpers.categoryfind()
+  res.render('admin/category-offer',{admin: true,offerview,category})
 });
 
+router.post('/category-offer',async(req,res)=>{
+  let viewPro=await prodHelpers.addCategoryOffer(req.body)
+  res.json(viewPro)  
+});
+
+
+router.get('/add-coupon',verifyLogin,(req,res)=>{
+  res.render('admin/coupon',{admin:true,'couponErr':req.session.couponErr})
+})
+
+router.post('/add-coupon',(req,res)=>{
+  console.log(req.body);
+  prodHelpers.checkCoupon(req.body).then(()=>{
+    res.json()
+  }).catch(()=>{
+    req.session.couponErr="Coupon Already Exists"
+    res.redirect('/add-coupon')
+  })
+})
+
+
+  router.post('/deleteOffer',async(req,res)=>{
+    let response=await prodHelpers.deleteCategoryOffer(req.body.catOfferId,req.body.offerItem)
+    res.json({status:true})
+
+  });
+
+  router.post('/salesreport/report', async (req, res) => {
+    console.log(req.body.from+'hai');
+    let salesReport = await prodHelpers.getSalesReport(req.body.from, req.body.to)
+    res.json({ report: salesReport })
+  })
+  
+  router.post('/salesreport/monthlyreport', async (req, res) => {
+    let singleReport = await prodHelpers.getNewSalesReport(req.body.type)
+    res.json({ wmyreport: singleReport })
+  })
+  
+  router.get('/salesreport', async (req, res) => {
+    let salesreport = await prodHelpers.getsalesReport()
+    res.render('admin/salesreport', { admin: true, salesreport })
+  })
+
+
+
+  router.get('/product-offer',verifyLogin,async(req,res)=>{
+    let viewPro= await prodHelpers.getAllProducts()
+    let cat=await prodHelpers.getAllCategories()
+    let findofferPro= await prodHelpers.viewOfferPro()
+    res.render('admin/product-offer',{admin: true,viewPro,findofferPro,cat})
+  });
+  
+  router.post('/product-offer',(req,res)=>{
+    prodHelpers.addProductOffer(req.body).then((offer)=>{  
+      res.json(offer)
+    })
+  });
+  
+  router.post('/deleteOfferPro',(req,res)=>{
+    prodHelpers.deleteProOffer(req.body.proOfferId,req.body.profferItem)
+    res.json({status:true})
+  });
+
+  router.get('/getAllPro',async(req,res)=>{
+    let pro=await prodHelpers.getProductsByCat(req.query.cat)
+    res.json(pro)
+  })
+
+  router.get("/logout", (req, res) => {
+    req.session.destroy();
+    res.redirect("/admin");
+  });
 module.exports = router;

@@ -1,27 +1,81 @@
-
 <script>
-    function myFunction() {
-        var element = document.getElementById("section-A");
-        element.classList.toggle("d-block");
-    }
+ 
 </script>
+
+<style>
+    .form-control:disabled,
+    .form-control[readonly] {
+        background-color: #ffffff;
+        opacity: 1;
+    }
+
+    img {
+        max-width: 100%;
+        height: auto;
+        width: auto\9;
+        vertical-align: middle;
+        border: none;
+        outline: none;
+    }
+
+    article,
+    aside,
+    details,
+    figcaption,
+    figure,
+    footer,
+    header,
+    hgroup,
+    menu,
+    nav,
+    section {
+        display: block;
+        margin: 0;
+        padding: 0;
+    }
+
+    div,
+    h1,
+    h2,
+    h3,
+    h4,
+    span,
+    p,
+    input,
+    form,
+    img,
+    hr,
+    img,
+    a {
+        margin: 0;
+        padding: 0;
+        border: none;
+    }
+
+    .mt-30,
+    .mb-30 {
+        margin: 30px 0;
+    }
+</style>
 
 
 <div class="container mt-5">
     <div class="bs-example row">
-        <div class="col-md-4">
+        <div class="col-md-3">
 
-            <div class="card" style="width: 18rem;">
+            <div class="card">
                 <ul class="list-group list-group-flush" id="list">
-                    <li class="list-group-item active side_section" value="sectionA">Add Address</li>
-                    <li class="list-group-item side_section" value="sectionB">My Profile</li>
+                    <li class="list-group-item active side_section side-content" value="sectionA">Add Address</li>
+                    <li class="list-group-item side_section side-content" value="sectionB">My Profile</li>
+                    <li class="list-group-item side_section side-content" value="sectionC">Refer</li>
+                    <li class="list-group-item side_section side-content" value="sectionD">Wallet</li>
                 </ul>
             </div>
 
         </div>
 
 
-        <div class="col-md-8">
+        <div class="col-md-9">
 
 
             <div class="tab-content" id="list">
@@ -65,11 +119,11 @@
                             </div>
 
                             <div class="form-row">
-                                <div class="form-group col-md-3">
+                                <div class="form-group col-md-6 col-sm-6 col-8">
                                     <label for="inputZip">Zip</label>
                                     <input type="text" class="form-control" name="pin" placeholder="Pincode" id="zip">
                                 </div>
-                                <div class="col-md-3">
+                                <div class="col-md-4 col-sm-6 col-4">
                                     <button type="button" id="pin_button" class="btn btn-warning"
                                         style="margin-top: 32px;"
                                         onclick="pinSearch(document.getElementById('zip').value)">Search</button>
@@ -80,7 +134,7 @@
                                     <span class="sr-only">Loading...</span>
                                 </div>
 
-                                <div class="form-group col-md-6" style="margin-left: 131px;">
+                                <div class="form-group col-md-12" >
                                     <label for="inputOffice">Post Offie</label>
                                     <input type="text" class="form-control" name="office" id="office"
                                         placeholder="Post Office">
@@ -108,44 +162,481 @@
                         </form>
                     </div>
                     {{#each data}}
-                    <div class="mt-4">
-                        <div class="all_address pl-3 pt-3">
-                            <span class="address_text1">{{this.address.firstname}}</span>
-                            <span class="address_text1">{{this.address.lastname}}</span>
-                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                            <span class="address_text1">{{this.address.phone}}</span>
-                            <div class="pt-3">
-                                <span
-                                    class="address_text2">{{this.address.address1}},&nbsp;{{this.address.city}},&nbsp;{{this.address.state}}</span>
-                                <p class="address_text2">{{this.address.pin}}</p>
+                    <div class="mt-4 all_address">
+                        <div class=" row">
+                            <div class="ml-3 pt-3 col-md-8 col-7">
+                                <span class="address_text1">{{this.address.firstname}}</span>
+                                <span class="address_text1">{{this.address.lastname}}</span>
+                                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                <span class="address_text1">{{this.address.phone}}</span>
+                                <div class="pt-3 pb-2">
+                                    <span
+                                        class="address_text2">{{this.address.address1}},&nbsp;{{this.address.city}},&nbsp;{{this.address.state}}</span>
+                                    <p class="address_text2">{{this.address.pin}}</p>
+                                </div>
+
                             </div>
-                        </div>
-                        <div class="pl-4">
-<                            
+                            <div class="col-md-3 col-4 mt-3">
+                                <button onclick="edit_address('{{../user._id}}','{{this.address.id}}')"
+                                    class="btn btn-warning">Edit</button>
+                                <button onclick="delete_address('{{../user._id}}','{{this.address.id}}')" class="btn btn-danger">Delete</button>
+                            </div>
+
                         </div>
                     </div>
                     {{/each}}
                 </div>
-
                 <div id="sectionB" class="tab-pane">
-                    <h3>Section B</h3>
-                    <p>Vestibulum nec erat eu nulla rhoncus fringilla ut non neque. Vivamus nibh urna, ornare id gravida
-                        ut,
-                        mollis a magna. Aliquam porttitor condimentum nisi, eu viverra ipsum porta ut. Nam hendrerit
-                        bibendum turpis, sed molestie mi fermentum id. Aenean volutpat velit sem. Sed consequat ante in
-                        rutrum convallis. Nunc facilisis leo at faucibus adipiscing.</p>
+                    <div class="container py-5 mb-5" style="background-color: #eee;">
+
+                        <div class="row">
+                            <div class="col">
+                                <nav aria-label="breadcrumb" class="bg-light rounded-3 p-3 mb-4">
+                                    <span
+                                        style="font-size: x-large;font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;"
+                                        id="lblGreetings"></span><span
+                                        style="font-size: larger;font-weight: 700;">{{user.name}}</span>
+                                </nav>
+                            </div>
+                        </div>
+
+
+                        <div class="row">
+                            <div class="col-lg-4">
+                                <div class="card mb-4">
+                                    <div class="card-body text-center">
+                                        <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-chat/ava3.webp"
+                                            alt="avatar" class="rounded-circle img-fluid" style="width: 150px;">
+                                        <h5 class="my-3" id="pro-name1">{{user.name}}</h5>
+                                        <p class="text-muted mb-1" id="pro-email1">{{user.email}}</p>
+                                        <p class="text-muted mb-4" id="pro-number1">{{user.number}}</p>
+                                        <div class="d-flex justify-content-center mb-2">
+
+
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                            <div class="col-lg-8">
+                                <form action="" id="edit-user-profile">
+                                <div class="card mb-4">
+                                        <div class="card-body">
+                                            <div class="row">
+                                                <div class="col-sm-3">
+                                                    <p class="mt-2">Name</p>
+                                                </div>
+                                                <div class="col-sm-9">
+                                                    <input name="name" id="pro-name" class="text-muted1 form-control"
+                                                        value="{{user.name}}">
+                                                </div>
+                                            </div>
+                                            <hr>
+                                            <div class="row mt-4">
+                                                <div class="col-sm-3">
+                                                    <p class="mt-2">Email</p>
+                                                </div>
+                                                <div class="col-sm-9">
+                                                    <input name="email" id="pro-email" class="text-muted1 form-control"
+                                                        value="{{user.email}}">
+                                                </div>
+                                            </div>
+                                            <hr>
+                                            <div class="row mt-4">
+                                                <div class="col-sm-3">
+                                                    <p class="mt-2">Birthday</p>
+                                                </div>
+                                                <div class="col-sm-9">
+                                                    <input name="bday" id="pro-bday" class="text-muted1 form-control"
+                                                        value="{{user.bday}}">
+                                                </div>
+                                            </div>
+                                            <hr>
+                                            <div class="row mt-4">
+                                                <div class="col-sm-3">
+                                                    <p class="mt-2">Mobile</p>
+                                                </div>
+                                                <div class="col-sm-9">
+                                                    <input name="number" id="pro-number" class="text-muted1 form-control"
+                                                        value="{{user.number}}">
+                                                </div>
+                                            </div>
+                                            <hr>
+
+                                        </div>
+                                        <div class="m-4">
+                                            <button type="button" id="profile-edit" onclick="edit_form()"
+                                                class="btn btn-warning">Edit</button>
+                                            <button type="submit" onclick="submit_profile(event)" id="profile-edit-submit"
+                                                class="btn btn-success">Submit</button>
+                                        </div>  
+                                </div>
+                                </form>
+                                <div class="row mt-3">
+                                    <div class="col-md-12">
+                                        <div class="card mb-4 mb-md-0">
+                                            <div class="card-body">
+                                                <p class="mb-4"><span
+                                                        class="text-primary font-italic me-1">assigment</span>
+                                                    Project Status</p>
+                                                <p class="mb-1" style="font-size: .77rem;">Web Design</p>
+                                                <div class="progress rounded" style="height: 5px;">
+                                                    <div class="progress-bar" role="progressbar" style="width: 80%"
+                                                        aria-valuenow="80" aria-valuemin="0" aria-valuemax="100">
+                                                    </div>
+                                                </div>
+                                                <p class="mt-4 mb-1" style="font-size: .77rem;">Website Markup</p>
+                                                <div class="progress rounded" style="height: 5px;">
+                                                    <div class="progress-bar" role="progressbar" style="width: 72%"
+                                                        aria-valuenow="72" aria-valuemin="0" aria-valuemax="100">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
                 <div id="sectionC" class="tab-pane">
-                    <h3>Section C</h3>
-                    <p>Vestibulum nec erat eu nulla rhoncus fringilla ut non neque. Vivamus nibh urna, ornare id gravida
-                        ut,
-                        mollis a magna. Aliquam porttitor condimentum nisi, eu viverra ipsum porta ut. Nam hendrerit
-                        bibendum turpis, sed molestie mi fermentum id. Aenean volutpat velit sem. Sed consequat ante in
-                        rutrum convallis. Nunc facilisis leo at faucibus adipiscing.</p>
+                    <div class="container">
+                        <div class="row mt-2 mb-30">
+                            <div class="col-sm-12 col-md-3">
+                                <div class="share-boxes">
+                                    <img src="https://i.ibb.co/PtYrLNy/img1.png" alt="img1" border="0">
+                                    <p>Get Referal Link</p>
+                                </div>
+                            </div>
+                            <div class="col"></div>
+                            <div class="col-sm-12 col-md-3">
+                                <div class="share-boxes">
+                                    <img src="https://i.ibb.co/P5TdfkT/img2.png" alt="img2" border="0">
+                                    <p>Share your Referal Link</p>
+                                    <img src="https://i.ibb.co/Sr5F70S/dotted-arrow1.png" alt="dotted-arrow1"
+                                        class="dotted-line">
+                                    <img src="https://i.ibb.co/Fqs2KxB/dotted-arrow2.png" alt="dotted-arrow2"
+                                        class="dotted-line2">
+                                </div>
+                            </div>
+                            <div class="col"></div>
+                            <div class="col-sm-12 col-md-3">
+                                <div class="share-boxes">
+                                    <img src="https://i.ibb.co/StC3RWk/img3.png" alt="img3" border="0">
+                                    <p>Earn ₹100 from Signup</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row refer-form-sec">
+                            <div class="col">
+                                <div class="refer-image">
+                                    <img src="/product-images/refer.jpg" alt="big-image" border="0" />
+                                </div>
+                            </div>
+                            <div class="col">
+                                <div class="refer-form">
+                                    <ul>
+                                        <li><a style="background-color: #25D366;"
+                                                href="https://api.whatsapp.com/send?text={{referalLink}}"
+                                                data-action="share/whatsapp/share">Share via Whatsapp</a></li>
+                                    </ul>
+                                </div>
+                                <div class="refer-form-content">
+                                    <h2>Refer your Friends</h2>
+                                    <p>Copy the below URL and Share it with your friends NOW!</p>
+                                    <input type="text" name="Your Name" id="myInput" value="{{referalLink}}">
+                                    <button class="btn btn-dark" onclick="copyFunction()">Copy the URL</button>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
                 </div>
+
+
+
+                <div id="sectionD" class="tab-pane">
+                    <div class="wallet-container text-center pt-2"
+                        style="box-shadow: 0 2px 6px 0 rgba(218, 8, 8, 0.2);transition: 0.3s;background: linear-gradient(rgb(247, 245, 245),rgb(245, 245, 245));">
+                        <p class="page-title "
+                            style="font-size: larger;font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif">
+                            <i class="fa fa-align-left pr-2"></i>My E-wallet</p>
+
+                        <div class="amount-box text-center mt-5">
+                            <img style="height: 50px;"
+                                src="https://lh3.googleusercontent.com/ohLHGNvMvQjOcmRpL4rjS3YQlcpO0D_80jJpJ-QA7-fQln9p3n7BAnqu3mxQ6kI4Sw"
+                                alt="wallet">
+                            <p>Total Balance</p>
+                            <p class="amount pt-3 pb-3" style="font-size: x-large;">₹ {{wallet}}</p>
+                        </div>
+                        {{#if userData.wallet}}
+                        <div class="txn-history d-flex justify-content-center mt-5">
+                            <p><b class="pl-3">Hurray you earned {{userData.wallet}}</b></p>
+                            <p class="txn-list pl-3">You can use {{userData.wallet}} at Checkout</p>
+                        </div>
+                        {{/if}}
+
+                    </div>
+                </div>
+
+
             </div>
 
         </div>
-
     </div>
-</div>
+
+    <script>
+
+        $("#profile_form").submit(function (e) {
+
+            e.preventDefault();
+
+            var form = $(this);
+
+            $.ajax({
+                type: "POST",
+                url: '/profile-edit',
+                data: form.serialize(),
+                success: (response) => {
+                    $('#profile_name').val(response.name);
+                    $('#profile_email').val(response.email);
+                    $('#profile_bday').val(response.bday);
+                    $('#profile_mobile').val(response.number);
+                    $('.input_field').prop("disabled", true);
+                    $('.input_field').css("border", "0");
+                    $('#btn-submit').hide()
+                    $('#btn-edit').show()
+                    var toastMixin = Swal.mixin({
+                        toast: true,
+                        icon: 'success',
+                        title: 'General Title',
+                        animation: false,
+                        position: 'bottom',
+                        showConfirmButton: false,
+                        timer: 3000,
+                        timerProgressBar: true,
+                        didOpen: (toast) => {
+                            toast.addEventListener('mouseenter', Swal.stopTimer)
+                            toast.addEventListener('mouseleave', Swal.resumeTimer)
+                        }
+                    });
+
+                    toastMixin.fire({
+                        animation: true,
+                        title: 'Profile Edited Successfully'
+                    });
+                }
+            });
+
+        });
+
+    </script>
+
+    <script>
+        function edit_address(id, addressId) {
+            $.ajax({
+                url: '/edit-address?id=' + id + '&addId=' + addressId,
+                method: 'get',
+                success: (res) => {
+                    $('#sectionA').html('')
+                    $('#sectionA').append(`<div class="row ml-1"><div class="col-lg-9 col-md-8 col-sm-8 col-8 primary-btn1">EDIT ADDRESS</div>
+                        <a href="/my-profile" class="col-lg-2 col-md-3 col-sm-3 col-3 ml-3 primary-btn1">BACK</a>
+                        </div>
+                        <div>
+                        <form action="/update-address" method="post" class="mt-4">
+                            <div class="form-row">
+                                <div class="form-group col-md-6">
+                                    <label for="inputEmail4">First Name</label>
+                                    <input value="${res.address.firstname}" type="text" name="firstname" class="form-control" 
+                                        placeholder="First Name">
+                                </div>
+                                <div class="form-group col-md-6">
+                                    <label for="inputEmail4">Last Name</label>
+                                    <input value="${res.address.lastname}" type="text" name="lastname" class="form-control"
+                                        placeholder="Last Name">
+                                </div>
+                                <div class="form-group col-md-6">
+                                    <label for="inputEmail4">Email</label>
+                                    <input value="${res.address.email}" type="email" name="email" class="form-control" 
+                                        placeholder="Email">
+                                </div>
+                                <div class="form-group col-md-6">
+                                    <label for="inputEmail4">Phone</label>
+                                    <input value="${res.address.phone}" type="text" name="phone" class="form-control"
+                                        placeholder="Mobile Number">
+                                </div>
+
+                            </div>
+                            <div class="form-group">
+                                <label for="inputAddress">Address</label>
+                                <input value="${res.address.address1}" type="text" class="form-control" name="address1"
+                                    placeholder="Street Address">
+                            </div>
+                            <div class="form-group">
+                                <label for="inputAddress2">Address 2</label>
+                                <input type="text" class="form-control" name="address2" value="${res.address.address2}"
+                                    placeholder="Apartment, studio, or floor">
+                            </div>
+
+                            <div class="form-row">
+                                <div class="form-group col-md-6 col-6">
+                                    <label for="inputZip">Zip</label>
+                                    <input type="text" class="form-control" value="${res.address.pin}" name="pin" placeholder="Pincode" id="zip">
+                                </div>
+                                <div class="col-md-4 col-4">
+                                    <button type="button" id="pin_button" class="btn btn-warning"
+                                        style="margin-top: 32px;"
+                                        onclick="pinSearch(document.getElementById('zip').value)">Search</button>
+                                </div>
+
+                                <div class="spinner-border text-success" id="spinner" role="status"
+                                    style=" margin-top: 30px; margin-left: -163px;visibility: hidden;">
+                                    <span class="sr-only">Loading...</span>
+                                </div>
+
+                                <div class="form-group col-md-12" >
+                                    <label for="inputOffice">Post Offie</label>
+                                    <input type="text" class="form-control" value="${res.address.office}" name="office" id="office"
+                                        placeholder="Post Office">
+                                </div>
+                            </div>
+
+
+
+                            <div class="form-row">
+                                <div class="form-group col-md-6">
+                                    <label for="inputCity">City</label>
+                                    <input type="text" class="form-control" value="${res.address.city}" name="city" id="city" placeholder="City">
+                                </div>
+                                <div class="form-group col-md-4">
+                                    <label for="inputState">State</label>
+                                    <input type="text" list="state" id="state" value="${res.address.state}" name="state" class="form-control"
+                                        placeholder="Pick a State" />
+
+                                    <input type="text" hidden name="id"  value="${res.address.id}"/>
+                            
+                            </div>
+
+
+
+
+                            </div>
+                            <button type="submit" class="btn btn-success btn-md">Submit</button>
+                        </form>`)
+
+
+
+                }
+            })
+        }
+    </script>
+
+
+    <script>
+        function copyFunction() {
+            /* Get the text field */
+            var copyText = document.getElementById("myInput");
+
+            /* Select the text field */
+            copyText.select();
+            copyText.setSelectionRange(0, 99999); /* For mobile devices */
+
+            /* Copy the text inside the text field */
+            navigator.clipboard.writeText(copyText.value);
+
+            var toastMixin = Swal.mixin({
+                toast: true,
+                icon: 'success',
+                title: 'General Title',
+                animation: false,
+                position: 'bottom',
+                showConfirmButton: false,
+                timer: 3000,
+                timerProgressBar: true,
+                didOpen: (toast) => {
+                    toast.addEventListener('mouseenter', Swal.stopTimer)
+                    toast.addEventListener('mouseleave', Swal.resumeTimer)
+                }
+            });
+
+            toastMixin.fire({
+                animation: true,
+                title: 'Copied to Clipboard'
+            });
+        }
+    </script>
+
+
+    <script>
+        $(document).ready(() => {
+            $(".text-muted1").css("border", "0");
+            $(".text-muted1").prop('disabled', true);
+            $('#profile-edit-submit').hide()
+        })
+
+        function edit_form() {
+             $(".text-muted1").css("border", "1px solid");
+            $(".text-muted1").prop('disabled', false);
+            $('#profile-edit').hide()
+            $('#profile-edit-submit').show()
+
+        }
+        
+
+        function submit_profile(e){
+            e.preventDefault()
+            $.ajax({
+                url: '/edit-profile',
+                method: 'POST',
+                data: $('#edit-user-profile').serialize(),
+                success: (res) => {
+                    $(".text-muted1").prop('disabled', true);
+                    $(".text-muted1").css("border", "0");
+                    $('#profile-edit-submit').hide()
+                    $('#profile-edit').show()
+                    $('#pro-name').val(res.name)
+                    $('#pro-email').val(res.email)
+                    $('#pro-bday').val(res.bday)
+                    $('#pro-number').val(res.number)
+                    $('#pro-name1').html(res.name)
+                    $('#pro-email1').html(res.email)
+                    $('#pro-number1').html(res.number)
+
+                    Swal.fire({
+                        toast: true,
+                        icon: 'success',
+                        title: 'Updated successfully',
+                        animation: false,
+                        position: 'bottom',
+                        showConfirmButton: false,
+                        timer: 3000,
+                        timerProgressBar: true,
+                        didOpen: (toast) => {
+                            toast.addEventListener('mouseenter', Swal.stopTimer)
+                            toast.addEventListener('mouseleave', Swal.resumeTimer)
+                        }
+                    })
+
+                }
+            })
+
+        }
+    
+
+    </script>
+
+  
+  <script>
+        var myDate = new Date();
+  var hrs = myDate.getHours();
+  var greet;
+  if (hrs < 12)
+      greet = 'Good Morning';
+  else if (hrs >= 12 && hrs <= 17)
+      greet = 'Good Afternoon';
+  else if (hrs >= 17 && hrs <= 24)
+      greet = 'Good Evening';
+
+  document.getElementById('lblGreetings').innerHTML =
+      '<b>' + greet + ',' +'</b> ';
+  </script>

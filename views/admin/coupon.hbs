@@ -4,7 +4,7 @@
         
 
         <div class="col-md-6 card-product pt-4">
-             <div class="col-md-12 text-center">
+            <div class="col-md-12 text-center">
             <p class="admin-logo">ADD COUPON</p>
             </div>
 
@@ -28,7 +28,6 @@
                             <select name="coupon_type"id="Coupon_Code">
                                 <option value="selectcard">Select</option>
                                 <option value="all" name="all" >For all Users</option>
-                                <option value="group" name="first">For First Users</option>
 
                             </select><br><br><br>
                         </div>
@@ -37,8 +36,8 @@
                             <input type="datetime-local" name="duration" class="form-control" id="exampleInputDuration">
                         </div>
                         <div class="col-md-6 mt-2 ml-3" style="color: red; ">
-                            {{#if err}}
-                            {{err}}
+                            {{#if couponErr}}
+                            {{couponErr}}
                             {{/if}}
                         </div>
                         <div class="col-md-12 mb-5 mt-4 " style="margin-left: 17px;">
@@ -63,5 +62,19 @@
 
 
 </section>
+
+
+<script>
+    $('#coupon_code').submit(()=>{
+        $.ajax({
+            url:'/admin/add-coupon',
+            method:'post',
+            data: $('#coupon_code').serialize(),
+            success:()=>{
+
+            }
+        })
+    })
+</script>
 
 

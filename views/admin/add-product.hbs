@@ -1,6 +1,5 @@
+<section>
 
-
-<section style="height: 1200px;">
     <div class="container align-items-center" style="padding-top: 4rem;">
 
         <div class="row justify-content-center">
@@ -14,9 +13,9 @@
         </div>
         {{!-- --}}
 
-        <div class="row justify-content-center">
-            <div class="col-md-6"
-                style="box-shadow: 0 8px 16px 0 rgba(218, 8, 8, 0.2);transition: 0.3s;height: 1050px;">
+        <div class="row justify-content-center ">
+            <div class="col-lg-6 col-md-8 col-sm-10 col-10 mb-5"
+                style="box-shadow: 0 8px 16px 0 rgba(218, 8, 8, 0.2);transition: 0.3s;">
                 <h2 class="text-center admin-logo pt-3">ADD PRODUCT</h2>
                 <form action="/admin/add-product" method="post" enctype="multipart/form-data">
 
@@ -68,7 +67,7 @@
                             <div class="mt-1">
                                 {{#each color}}
                                 <div class="form-check form-check-inline">
-                                    <input class="form-check-input" type="checkbox" id="inlineCheckbox1" name="Colour"
+                                    <input class="form-check-input" type="checkbox" id="{{this.Color}}" name="Colour"
                                         value="{{this.Color}}">
                                     <label class="form-check-label" for="inlineCheckbox1">{{this.Color}}</label>
                                 </div>
@@ -106,15 +105,62 @@
 
                     <div class="mb-3 mt-3">
                         <label for="formFileMultiple" class="form-label">Images</label>
+                        
+                        <div class="row">
+                            {{!-- --------1---------- --}}
+                            <div class="mb-3  col-lg-12 mt-3">
+                                <img src="" id="imgView1" alt="" style="width:100px">
+                                <input type="file" id="id_image1" class="form-control" name="image1" accept="image/*"
+                                    onchange="viewImage1(event)"><br>
+                                <div id="image-box1" class="image-container"></div>
+                                <button class="btn btn-outline-info" id="crop-btn1"
+                                    style="width: 100%; margin-top: 10px; display: none;" type="button">Crop</button>
+                            </div>
+                             <div id="imagePreview"></div>
+                            {{!-- --------2---------- --}}
 
 
-              
+                            <div class="mb-3  col-lg-12 mt-3">
+                                <img src="" id="imgView2" alt="" style="width:100px">
+                                <input type="file" id="id_image2" class="form-control" name="image2" accept="image/*"
+                                    onchange="viewImage2(event)"><br>
+                                <div id="image-box2" class="image-container"></div>
+                                <button class="btn btn-outline-info" id="crop-btn2"
+                                    style="width: 100%; margin-top: 10px; display: none;" type="button">Crop</button>
+                            </div>
+                            {{!-- --------3---------- --}}
+
+                            <div class="mb-3  col-lg-12 mt-3">
+                                <img src="" id="imgView3" alt="" style="width:100px">
+                                <input type="file" id="id_image3" class="form-control" name="image3" accept="image/*"
+                                    onchange="viewImage3(event)"><br>
+                                <div id="image-box3" class="image-container"></div>
+                                <button class="btn btn-outline-info" id="crop-btn3"
+                                    style="width: 100%; margin-top: 10px; display: none;" type="button">Crop</button>
+                            </div>
+
+                             {{!-- --------4---------- --}}
+
+                            <div class="mb-3  col-lg-12 mt-3">
+                                <img src="" id="imgView4" alt="" style="width:100px">
+                                <input type="file" id="id_image4" class="form-control" name="image4" accept="image/*"
+                                    onchange="viewImage4(event)"><br>
+                                <div id="image-box4" class="image-container"></div>
+                                <button class="btn btn-outline-info" id="crop-btn4"
+                                    style="width: 100%; margin-top: 10px; display: none;" type="button">Crop</button>
+                            </div>
+                          
+
+                           
+                        </div>
+
+
                     </div>
-                    
+
 
 
                     <div class="mt-4">
-                        <button type="submit" onclick="return proValidate()" class="btn btn-success">Add
+                        <button type="submit" onclick="return proValidate()" class="btn btn-success mb-4">Add
                             Product</button>
                     </div>
 
@@ -126,14 +172,11 @@
 
 </section>
 
+
 <script>
     window.addEventListener('load', (event) => {
         setTimeout(() => {
             document.getElementById('successDiv').style.display = 'none';
         }, 2000)
     });
-</script>
-
-<script>
-   
 </script>

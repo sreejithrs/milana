@@ -20,12 +20,14 @@
                                 <td class="product__cart__item">
                                     <div class="product__cart__item__pic">
                                         <img src="/product-images/{{this.product.Imageid.[0]}}" alt=""
-                                            style="height: 80px;width: 70px;">
+                                            style="height: 90px;width: 90px;">
                                     </div>
                                     <div class="product__cart__item__text">
-
                                         <h6>{{this.product.Title}}</h6>
-                                        <h5>₹{{this.product.Price}}</h5>
+                                        <div class="d-flex"><h5>₹&nbsp;{{this.product.Price}}</h5> <span class="font-weight-bold ml-3">Color:&nbsp;</span><span>{{this.color}},</span>&nbsp;
+                                        <span class="font-weight-bold">Size:&nbsp;</span><span>{{this.size}}</span></div>
+                                        
+                                        
                                     </div>
                                 </td>
 
@@ -42,7 +44,7 @@
                                 {{!-- <td class="cart__price"><span>₹&nbsp;</span><span id="pro_price">
                                         {{totalValue.total}} </span></td> --}}
                                 <td class="cart__close"><button style="border: none; border-radius: 20px;"
-                                        onclick="deleteProduct('{{this._id}}','{{this.product._id}}')"><i
+                                        onclick="deleteProduct('{{this._id}}','{{this.product._id}}','{{this.size}}','{{this.color}}')"><i
                                             class="fa fa-close"></i></button></td>
 
                             </tr>
@@ -54,20 +56,14 @@
                     <div class="col-lg-6 col-md-6 col-sm-6">
                         <div class="continue__btn">
 
-                            <a href="/category?cat={{cat.Category}}">Continue Shopping</a>
+                            <a href="/category?cat=Men">Continue Shopping</a>
                         </div>
                     </div>
 
                 </div>
             </div>
             <div class="col-lg-4">
-                <div class="cart__discount">
-                    <h6>Discount codes</h6>
-                    <form action="#">
-                        <input type="text" placeholder="Coupon code">
-                        <button type="submit">Apply</button>
-                    </form>
-                </div>
+               
                 <div class="cart__total">
                     <h6>Cart total</h6>
                     <ul>
@@ -108,17 +104,13 @@
             method: 'post',
             success: (response) => {
                 if (response.removeProduct) {
-                    alert("Product removed from cart")
-                    location.reload()
-                } 
-                else if (response.countCheck) {
-                    var alerted = localStorage.getItem('alerted') || '';
-                    if (alerted != 'yes') {
-                    alert("My alert.");
-                    localStorage.setItem('alerted','yes');
-                    }
-                    //alert("Not much Stock Exists")
-                    document.getElementById('plus_button').style.visibility = 'hidden';
+                    Swal.fire('Product removed from Cart').then(()=>{
+                        location.reload()
+                    })
+                }
+                else if(response.stock){
+                     Swal.fire('Sorry Not much Stock')
+                     document.getElementById('plus_button').style.visibility = 'hidden';
                 }
                 else {
                     console.log(response.total)
@@ -134,6 +126,3 @@
     }
 </script>
 
-<script>
-    document.getElementsByClassName('button_disable')
-</script>

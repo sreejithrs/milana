@@ -1,59 +1,66 @@
 <div class="container d-flex mt-5">
 
-    <div class="shop__sidebar__accordion col-md-3" style="border: 1px solid #000;">
-        <div class="accordion" id="accordionExample">
-
+    <div class="shop__sidebar__accordion col-md-3 col-sm-3 col-4">
+        <div class="accordion p-3" id="accordionExample"  style="border: 1px solid #000;">
+            
             <div class="card">
                 <div class="card-heading">
-                    <a data-toggle="collapse" data-target="#collapseThree">Filter Status</a>
+                    <a >Filter Status</a>
                 </div>
                 <div id="collapseThree" class="collapse show" data-parent="#accordionExample" >
                     <div class="card-body">
                         <div class="shop__sidebar__price">
                             <ul>
-                                <li><a href="/price-filter">Placed</a></li>
-                                <li><a href="#">Accepted</a></li>
-                                <li><a href="#"></a>Shipped</li>
-                                <li><a href="#">Delivered</a></li>
-                                <li><a href="#">Cancelled</a></li>
+                                <li><a href="/order-filter?val=placed">Placed</a></li>
+                                <li><a href="/order-filter?val=accepted">Accepted</a></li>
+                                <li><a href="/order-filter?val=shipped">Shipped</a></li>
+                                <li><a href="/order-filter?val=delivered">Delivered</a></li>
+                                <li><a href="/order-filter?val=cancelled">Cancelled</a></li>
                             </ul>
                         </div>
                     </div>
                 </div>
             </div>
+         
 
 
         </div>
     </div>
     
     
-    <div class="col-md-9 ">
-        <div class="d-flex pt-3" style="background-color: #111111; color: #ffffff;height: 55px;">
-            <div class="col-md-2">Order Id</div>
-            <div class="col-md-3">Date</div>
-            <div class="col-md-2">Amount</div>
-            <div class="col-md-3">Payment Method</div>
-            <div class="col-md-2">Order Status</div>
+    <div class="col-md-9 col-sm-9 col-8">
+        <div class="d-flex pt-3 pb-3" style="background-color: #111111; color: #ffffff;">
+            <div class="col-md-2 col-sm-2 col-7">Order Id</div>
+            <div class="col-md-3 col-sm-3 col-3 d-none d-sm-block">Date</div>
+            <div class="col-md-2 col-sm-2 col-2 d-none d-sm-block">Amount</div>
+            <div class="col-md-3 col-sm-3 col-1 d-none d-sm-block">Payment Method</div>
+            <div class="col-md-2 col-sm-2 col-5">Order Status</div>
         </div>
+        {{#if orders}}
         {{#each orders}}
-        <a href="javascript:getProducts('{{this._id}}','{{this.userId}}')"><div class="d-flex mt-4" style="height: 120px; background-color: rgb(240, 240, 240);">
-            <div class="col-md-2">
-                <p>{{this.orderId}}</p>
+        <a href="javascript:getProducts('{{this._id}}','{{this.userId}}')"><div class="d-flex mt-4 pt-5" style="height: 120px; width: auto; background-color: rgb(240, 240, 240);">
+            <div class="col-md-2 col-4">
+                <p class=" font-weight-bold">{{this.orderId}}</p>
             </div>
-            <div class="col-md-3">
-                <p>{{this.date}}</p>
+            <div class="col-md-3 col-3">
+                <p class=" font-weight-bold d-none d-sm-block">{{this.date}}</p>
             </div>
-            <div class="col-md-2">
-                 <p>{{this.totalAmount}}</p>
+            <div class="col-md-2 col-2 d-none d-sm-block">
+                 <p class=" font-weight-bold">{{this.totalAmount}}</p>
             </div>
-             <div class="col-md-3">
-                <p>{{this.paymentMethod}}</p>
+             <div class="col-md-3 col-1 d-none d-sm-block">
+                <p class=" font-weight-bold">{{this.paymentMethod}}</p>
             </div>
-            <div class="col-md-2">
-                <p>{{this.status}}</p>
+            <div class="col-md-2 col-6">
+                <p class=" font-weight-bold">{{this.status}}</p>
             </div>
         </div></a>
         {{/each}}
+        {{else}}
+        <div class="d-flex justify-content-center">
+        <img src="/images/no_result1.png" style="height: 500px; width: auto;">
+        </div>
+        {{/if}}
     </div>
     
 </div>

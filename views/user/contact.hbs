@@ -79,7 +79,7 @@
                 data: $("#submit-form").serialize(),
                 method: "post",
                 success: function (response) {
-                    window.location.reload()
+                    
                      $('#contact_spinner').css('visibility','hidden')
                     $('#contact_btn').show()
                     var toastMixin = Swal.mixin({
@@ -100,6 +100,8 @@
                     toastMixin.fire({
                         animation: true,
                         title: 'Form submitted successfully'
+                    }).then(()=>{
+                        window.location.reload()
                     })
                 },
                 error: function (err) {

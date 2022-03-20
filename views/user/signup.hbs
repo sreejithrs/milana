@@ -62,10 +62,16 @@
                 <div id="errormsg6" class="error-msg"></div>
                 <div id="successmsg" style="color: rgb(2, 146, 2);"></div>
               </div>
+              <input type="text" value="{{refer}}" name="referedBy"  hidden>
 
                <div style="color: red;font-family:Verdana, Geneva, Tahoma, sans-serif;">
                 {{#if signUpErr}}
                 {{signUpErr}}
+                {{/if}}
+              </div>
+               <div style="color: red;font-family:Verdana, Geneva, Tahoma, sans-serif;">
+                {{#if referErr}}
+                {{referErr}}
                 {{/if}}
               </div>
 

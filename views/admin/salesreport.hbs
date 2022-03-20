@@ -122,6 +122,7 @@
             method: "post",
             data: $("#salesDate-form").serialize(),
             success: (response) => {
+                console.log(response)
                 if (response.report) {
                     table.destroy();
                     document.getElementById('examplebody').innerHTML = ' '
@@ -289,4 +290,7 @@
         });
     });
 </script>
+
+
+
 

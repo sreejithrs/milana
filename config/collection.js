@@ -5,5 +5,11 @@ module.exports={
     CATEGORY_COLLECTION:"category",
     COLOR_COLLECTION:"color",
     CART_COLLECTION:"cart",
-    ORDER_COLLECTION:"order"
+    ORDER_COLLECTION:"order",
+    DELIVERED_COLLECTION:'delivered',
+    WISHLIST_COLLECTION:'wishlist',
+    PRODUCT_OFFER:'productoffer',
+    CATOFFER_COLLECTION:'catoffer',
+    COUPON_COLLECTION:'coupon',
+    USED_COUPON_COLLECTION:'used_coupon'
 }

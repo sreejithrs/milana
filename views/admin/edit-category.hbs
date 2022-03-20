@@ -52,7 +52,7 @@
                 style="box-shadow: 0 8px 16px 0 rgba(218, 8, 8, 0.2);transition: 0.3s;height: 1050px;">
                 <h2 class="text-center admin-logo pt-3">Edit Category</h2>
                 <form action="/admin/edit-category/{{cat._id}}" method="post" enctype="multipart/form-data">
-                    <label for="">Category Name</label>
+                    <label for="" class="mt-5">Category Name</label>
                     <input type="text" name="Category" class="form-control" value="{{cat.Category}}">
                     <br>
 
@@ -61,19 +61,19 @@
                         <input class="form-control" name="image" id="fileupload" type="file">
                     </div>
 
-                    <div id="dvPreview" class="mt-2">
+                    <div id="dvPreview" class="mt-5">
                         <img src="/category-images/{{cat._id}}.jpg" style="height: 110px;width: 90px;">
                     </div>
 
                     {{#each cat.SubCategory}}
-                    <div class="row">
+                    <div class="row mt-3">
                         <div class="col-md-6">
                             <label for="">SubCategories</label>
                             <input type="text" name="SubCategory" class="form-control" value="{{this}}">
                             <br>
                         </div>
                         <div class="col-md-6">
-                            <button class="btn btn-danger" onclick="delete_sub('{{this}}','{{../cat._id}}');">Delete</button>
+                            <button class="btn btn-danger" style="margin-top: 30px;" onclick="delete_sub('{{this}}','{{../cat._id}}');">Delete</button>
                         </div>
                     </div>
                     {{/each}}
