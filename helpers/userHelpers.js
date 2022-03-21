@@ -343,12 +343,7 @@ module.exports = {
       if (details.count == -1 && details.quantity == 1) {
         db.get()
           .collection(collection.CART_COLLECTION)
-          .deleteOne(
-            { _id: ObjectId(details.cart) }
-            // {
-            //     $pull:{products:{item:ObjectId(details.product)}}
-            // },
-          )
+          .updateOne( { _id: ObjectId(details.cart) },{$pull:{products:{item:ObjectId(details.product)}}})
           .then((response) => {
             resolve({ removeProduct: true });
           });
