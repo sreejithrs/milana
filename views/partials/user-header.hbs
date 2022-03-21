@@ -44,9 +44,9 @@
 
     </div>
     <div class="offcanvas__nav__option">
-       {{#if user}} <a href="/wishlist"><img src="/images/heart.png" alt=""></a>{{/if}}
+        {{#if user}} <a href="/wishlist"><img src="/images/heart.png" alt=""></a>{{/if}}
         <a href="/cart"><img src="/images/cart.png" alt=""> <span>{{cartCount}}</span></a>
-    
+
     </div>
     <div id="mobile-menu-wrap"></div>
 
@@ -136,71 +136,33 @@
 
 <script>
 
-    function checkProSelected() {
-        if(checkColorSelected==true && checkSizeSelected==true){
-            alert('sing')
-            return true
-        }else{
-            alert('haha')
-            return false
-        }
-    }
-
-        function checkColorSelected(){
-        if ($('input[name=color-1]:checked')) {
-            aler('damnn')
-            return true;
-        }else {
-             alert('happy')
-            return false;
-        }
-    }
-
-    function checkSizeSelected(){
-        if ($('input[name=size-1]:checked')) {
-            alert('happppyyy')
-            return true;
-        }else {
-            alert('err selected Size')
-            return false;
-        }
-    }
-
-    function addCart(id) {
-        status =  checkProSelected()
-        if(status){
-        color=document.querySelector('input[name=color-1]:checked').value
-        size=document.querySelector('input[name=size-1]:checked').value
-        alert('all selected')
-        $.ajax({
-            url: '/add-to-bag?id=' + id + '&size=' + size + '&color=' + color,
-            method: 'get',
-            success: (response) => {
-                if (response.status) {
-                    let count = $('#cart-count').html()
-                    count = parseInt(count) + 1
-                    $('#cart-count').html(count)
-                }
-                Swal.fire({
-                    toast: true,
-                    icon: 'success',
-                    title: 'Product Added to Cart',
-                    animation: false,
-                    position: 'bottom',
-                    showConfirmButton: false,
-                    timer: 2000,
-                    timerProgressBar: true,
-                    didOpen: (toast) => {
-                        toast.addEventListener('mouseenter', Swal.stopTimer)
-                        toast.addEventListener('mouseleave', Swal.resumeTimer)
+    function addCart(id,color,size) {
+            $.ajax({
+                url: '/add-to-bag?id=' + id + '&size=' + size + '&color=' + color,
+                method: 'get',
+                success: (response) => {
+                    if (response.status) {
+                        let count = $('#cart-count').html()
+                        count = parseInt(count) + 1
+                        $('#cart-count').html(count)
                     }
-                })
+                    Swal.fire({
+                        toast: true,
+                        icon: 'success',
+                        title: 'Product Added to Cart',
+                        animation: false,
+                        position: 'bottom',
+                        showConfirmButton: false,
+                        timer: 2000,
+                        timerProgressBar: true,
+                        didOpen: (toast) => {
+                            toast.addEventListener('mouseenter', Swal.stopTimer)
+                            toast.addEventListener('mouseleave', Swal.resumeTimer)
+                        }
+                    })
 
-            }
-        })
-        }
-
-        return false;
+                }
+            })
     }
 
 </script>

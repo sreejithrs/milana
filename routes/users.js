@@ -387,8 +387,8 @@ router.post('/place-orders',verifyLogin,async(req,res)=>{
             "payment_method": "paypal"
         },
         "redirect_urls": {
-            "return_url": "http://localhost:3000/success?orderId="+orderId+"&tot="+total,
-            "cancel_url": "http://localhost:3000/cancel"
+            "return_url": "https://milana.host/success?orderId="+orderId+"&tot="+total,
+            "cancel_url": "https://milana.host/cancel"
         },
         "transactions": [{
             "item_list": {
@@ -525,7 +525,7 @@ router.get('/my-profile',verifyLogin,async(req,res)=>{
   let user=await userHelpers.getUserDetails(req.session.user._id)
   let refer=user.refer
   let wallet=user.wallet
-  let referalLink='http://localhost:3000/signup?refer='+refer
+  let referalLink='https://milana.host/signup?refer='+refer
   let data=await userHelpers.getAllAddress(userId)
   res.render('user/my-profile',{head:true,user,wallet,cat,referalLink,cartCount,data})
 
