@@ -5,7 +5,7 @@ const state={
 }
 
 module.exports.connect=function(done){
-    const url= "mongodb+srv://sreejithrs001:Insanesoul123@cluster0.12s17.mongodb.net/milana?retryWrites=true&w=majority"
+    const url= "process.env.MONGO_URI"
     const dbname='milana'
 
     mongoClient.connect(url,(err,data)=>{
