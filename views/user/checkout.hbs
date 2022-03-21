@@ -110,23 +110,26 @@
                             </div>
 
                             <div class="form-row">
-                                <div class="form-group col-md-3">
+                                <div class="form-group col-md-6 col-6">
                                     <label for="inputZip">Zip</label>
                                     <input type="text" class="form-control" onkeyup="pinValidate()" name="pin" placeholder="Pincode" id="zip">
                                     <p class="error-msg" id="errormsg6"></p>
                                 </div>
-                                <div class="col-md-3">
+                                <div class="col-md-4 col-4">
                                     <button type="button" id="pin_button" class="btn btn-warning"
                                         style="margin-top: 32px;"
                                         onclick="pinSearch(document.getElementById('zip').value)">Search</button>
                                 </div>
 
-                                <div class="spinner-border text-success" id="spinner" role="status"
+                                <div class="spinner-border text-success position-relative" id="spinner" role="status"
                                     style=" margin-top: 30px; margin-left: -163px;visibility: hidden;">
                                     <span class="sr-only">Loading...</span>
                                 </div>
+                            </div>
 
-                                <div class="form-group col-md-6" style="margin-left: 131px;">
+                            <div class="form-row">
+
+                                <div class="form-group col-md-12 col-12" >
                                     <label for="inputOffice">Post Offie</label>
                                     <input type="text" class="form-control" name="office" id="office"
                                         placeholder="Post Office">

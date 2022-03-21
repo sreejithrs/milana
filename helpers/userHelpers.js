@@ -30,9 +30,7 @@ module.exports = {
     return new Promise(async (resolve, reject) => {
       if (userData.wallet) {
         let mainUser=await db.get().collection(collection.USER_COLLECTION).findOne({_id:userData.referedBy})
-        console.log(mainUser);
         if(mainUser.wallet<200){
-          console.log('hai');
           await db
           .get()
           .collection(collection.USER_COLLECTION)
@@ -163,7 +161,6 @@ module.exports = {
   getLimitedPro:()=>{
     return new Promise(async(resolve,reject)=>{
       let pro=await db.get().collection(collection.PRODUCT_COLLECTION).find({}).sort({Stock:1}).limit(4).toArray()
-      console.log(pro);
       resolve(pro)
     })
   },
@@ -342,7 +339,6 @@ module.exports = {
   changeProQuantity: (details) => {
     count = parseInt(details.count);
     quantity = parseInt(details.quantity);
-    console.log(quantity);
     return new Promise(async (resolve, reject) => {
       if (details.count == -1 && details.quantity == 1) {
         db.get()
@@ -514,7 +510,6 @@ module.exports = {
     return new Promise(async (resolve, reject) => {
       await db.get().collection(collection.CART_COLLECTION).deleteOne({ user: ObjectId(userId) });
       let order = await db.get().collection(collection.ORDER_COLLECTION).find({ _id: ObjectId(orderId) }).toArray();
-      console.log(order[0].products);
       let orderedPro=order[0].products
       for(i=0;i<orderedPro.length;i++){
         await db.get().collection(collection.PRODUCT_COLLECTION).updateOne({_id:orderedPro[i].item},{$inc:{Stock:-orderedPro[i].quantity}})
@@ -840,14 +835,9 @@ module.exports = {
     });
   },
 
-  filterbyOrders: (val) => {
+  filterbyOrders: (val,userId) => {
     return new Promise(async (resolve, reject) => {
-      let pro = await db
-        .get()
-        .collection(collection.ORDER_COLLECTION)
-        .find({ status: val })
-        .sort({ _id: -1 })
-        .toArray();
+      let pro = await db.get().collection(collection.ORDER_COLLECTION).find({ status: val, userId: userId }).sort({ _id: -1 }).toArray();
       resolve(pro);
     });
   },
@@ -993,7 +983,7 @@ module.exports = {
   },
 
   generateRazorpay: (orderId, total) => {
-    total = parseFloat(total);
+    total = parseInt(total).toFixed(2)
     return new Promise((resolve, reject) => {
       var options = {
         amount: total * 100,
@@ -1002,7 +992,7 @@ module.exports = {
       };
       instance.orders.create(options, function (err, order) {
         if (err) {
-          console.log(err);
+          reject(err)
         } else {
           resolve({ order, razorpay: true });
         }

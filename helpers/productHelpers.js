@@ -266,7 +266,6 @@ module.exports = {
 
    changeStatus: (status, id) => {
     let Status = status;
-    console.log(Status);
     return new Promise(async (resolve, reject) => {
         await db.get().collection(collection.ORDER_COLLECTION).updateOne({ _id: ObjectId(id) }, { $set: { status: status } }).then(async () => {
             if (Status == "delivered") {
@@ -346,7 +345,6 @@ module.exports = {
           $set:{status:'Paypal'}
         }
       ]).toArray()
-      console.log(paypal[0]);
       resolve([cod[0],razor[0],paypal[0]])
     })
   },
@@ -475,15 +473,12 @@ module.exports = {
                 salesOfLastWeekData.push(0)
             }
         }
-        console.log(salesOfLastWeekData);
         resolve(salesOfLastWeekData)
 
     })
   },
 
   getSalesReport: (from, to) => {
-    console.log(new Date(from));
-    console.log(new Date(to));
     return new Promise(async (resolve, reject) => {
         let orders = await db.get().collection(collection.ORDER_COLLECTION).aggregate([
             {
@@ -492,7 +487,6 @@ module.exports = {
               }
             },
         ]).toArray()
-        console.log(orders);
         resolve(orders)
     })
   },
@@ -511,7 +505,6 @@ module.exports = {
                 },
             },
         ]).toArray()
-        console.log(data);
         resolve(data)
 
     })
@@ -942,7 +935,6 @@ module.exports = {
   checkReferal:(referedBy)=>{
     return new Promise(async(resolve,reject)=>{
       let res=await db.get().collection(collection.USER_COLLECTION).find({refer:referedBy}).toArray()
-      console.log(res);
       if(res.length==0){
         reject()
       }else{

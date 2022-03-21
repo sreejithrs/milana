@@ -390,7 +390,6 @@ router.get('/view-orders',verifyLogin,(req,res)=>{
 router.get('/status-change',verifyLogin,(req,res)=>{
   let status=req.query.status
   let id=req.query.id
-  console.log(id);
   prodHelpers.changeStatus(status,id).then(()=>{
     res.redirect('/admin/view-orders')
   })
@@ -407,13 +406,17 @@ router.post('/category-offer',async(req,res)=>{
   res.json(viewPro)  
 });
 
+router.post('/deleteOffer',async(req,res)=>{
+  let response=await prodHelpers.deleteCategoryOffer(req.body.catOfferId,req.body.offerItem)
+  res.json({status:true})
+});
+
 
 router.get('/add-coupon',verifyLogin,(req,res)=>{
   res.render('admin/coupon',{admin:true,'couponErr':req.session.couponErr})
 })
 
 router.post('/add-coupon',(req,res)=>{
-  console.log(req.body);
   prodHelpers.checkCoupon(req.body).then(()=>{
     res.json()
   }).catch(()=>{
@@ -423,14 +426,7 @@ router.post('/add-coupon',(req,res)=>{
 })
 
 
-  router.post('/deleteOffer',async(req,res)=>{
-    let response=await prodHelpers.deleteCategoryOffer(req.body.catOfferId,req.body.offerItem)
-    res.json({status:true})
-
-  });
-
   router.post('/salesreport/report', async (req, res) => {
-    console.log(req.body.from+'hai');
     let salesReport = await prodHelpers.getSalesReport(req.body.from, req.body.to)
     res.json({ report: salesReport })
   })
@@ -474,4 +470,6 @@ router.post('/add-coupon',(req,res)=>{
     req.session.destroy();
     res.redirect("/admin");
   });
+
+
 module.exports = router;

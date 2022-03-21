@@ -31,7 +31,7 @@
                     {{#if user}}
                     <div class="dropdown-content">
                         <a href="/my-profile">My Profile</a>
-                        <a href="/login">My Orders</a>
+                        <a href="/my-orders">My Orders</a>
                         <a href="/logout">Logout</a>
                     </div>
                     {{/if}}
@@ -39,15 +39,14 @@
                 </div>
 
             </label>
-            <a href="#">About</a>
+            <a href="/about">About</a>
         </div>
 
     </div>
     <div class="offcanvas__nav__option">
-        <a href="#" class="search-switch"><img src="img/icon/search.png" alt=""></a>
-        <a href="#"><img src="/images/heart.png" alt=""></a>
-        <a href="#"><img src="/images/cart.png" alt=""> <span>0</span></a>
-        {{!-- <div class="price">₹0.00</div> --}}
+       {{#if user}} <a href="/wishlist"><img src="/images/heart.png" alt=""></a>{{/if}}
+        <a href="/cart"><img src="/images/cart.png" alt=""> <span>{{cartCount}}</span></a>
+    
     </div>
     <div id="mobile-menu-wrap"></div>
 

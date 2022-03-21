@@ -1,4 +1,9 @@
 <!-- Shopping Cart Section Begin -->
+<style>
+       @media screen and (max-width: 767px) {
+      .cart-div {margin-top:50px;}
+    }
+</style>
 <section class="shopping-cart spad">
     <div class="container">
         <div class="row">
@@ -10,7 +15,7 @@
                                 <th>Product</th>
                                 <th>Quantity</th>
                                 {{!-- <th>Total</th> --}}
-                                <th></th>
+                                <th>Delete</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -20,7 +25,7 @@
                                 <td class="product__cart__item">
                                     <div class="product__cart__item__pic">
                                         <img src="/product-images/{{this.product.Imageid.[0]}}" alt=""
-                                            style="height: 90px;width: 90px;">
+                                            style="height: 90px;width: auto;">
                                     </div>
                                     <div class="product__cart__item__text">
                                         <h6>{{this.product.Title}}</h6>
@@ -33,19 +38,18 @@
 
                                 <td class="quantity__item">
 
-                                    <button class="cart-item-count mr-3" id="minus_button"
+                                    <button class="cart-item-count mr-md-3" id="minus_button"
                                         onclick="changeQuantity('{{this._id}}','{{this.product._id}}',-1,'{{../user._id}}')">-</button>
 
                                     <span name="button_disable" id="{{this.product._id}}">{{this.quantity}}</span>
-                                    <button class="cart-item-count ml-3" id="plus_button"
+                                    <button class="cart-item-count ml-md-3" id="plus_button"
                                         onclick="changeQuantity('{{this._id}}','{{this.product._id}}',1,'{{../user._id}}')">+</button>
                                 </td>
 
-                                {{!-- <td class="cart__price"><span>₹&nbsp;</span><span id="pro_price">
-                                        {{totalValue.total}} </span></td> --}}
                                 <td class="cart__close"><button style="border: none; border-radius: 20px;"
                                         onclick="deleteProduct('{{this._id}}','{{this.product._id}}','{{this.size}}','{{this.color}}')"><i
-                                            class="fa fa-close"></i></button></td>
+                                            class="fa fa-close"></i></button>
+                                </td>
 
                             </tr>
                             {{/each}}
@@ -62,7 +66,7 @@
 
                 </div>
             </div>
-            <div class="col-lg-4">
+            <div class="col-lg-4 cart-div">
                
                 <div class="cart__total">
                     <h6>Cart total</h6>
