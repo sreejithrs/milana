@@ -289,12 +289,13 @@ router.get('/add-to-wishlet',(req,res)=>{
 
 
 router.get('/wishlist',async(req,res)=>{
-  let userId=req.session.user._id
   let user=req.session.user
-  let cat=req.session.cat
-  carCount=null
-  cartCount= await userHelpers.getCartCount(req.session.user._id)
-  userHelpers.getWishlist(userId).then((prod)=>{
+  let cat=req.session.cat 
+  cartCount=null
+  if(req.session.loggedIn){
+    cartCount= await userHelpers.getCartCount(user._id)
+  }
+  userHelpers.getWishlist(user._id).then((prod)=>{
     res.render('user/wishlist',{head:true,cat,footer:true,prod,user,cartCount})
   })
 })
@@ -379,15 +380,15 @@ router.post('/place-orders',verifyLogin,async(req,res)=>{
     else{
       //Paypal Create an Order
 
-      let total=parseInt(totalPrice)
+      let total=parseInt(totalPrice/76)
       const create_payment_json = {
         "intent": "sale",
         "payer": {
             "payment_method": "paypal"
         },
         "redirect_urls": {
-            "return_url": "http://localhost:3000/success?orderId="+orderId+"&tot="+total,
-            "cancel_url": "http://localhost:3000/cancel"
+            "return_url": "https://milana.host/success?orderId="+orderId+"&tot="+total,
+            "cancel_url": "https://milana.host/cancel"
         },
         "transactions": [{
             "item_list": {
@@ -401,7 +402,7 @@ router.post('/place-orders',verifyLogin,async(req,res)=>{
             },
             "amount": {
                 "currency": "USD",
-                "total": total
+                "total": total 
             },
             "description": "Order for Milana"
         }]
@@ -505,7 +506,6 @@ router.post('/add-address-checkout',verifyLogin,(req,res)=>{
 })
 
 router.get('/delete-address',(req,res)=>{
-  console.log(req.query.userId+""+req.query.addId);
   userHelpers.deleteAddress(req.query.userId,req.query.addId).then(()=>{
     res.json({status:true})
   })
@@ -525,7 +525,7 @@ router.get('/my-profile',verifyLogin,async(req,res)=>{
   let user=await userHelpers.getUserDetails(req.session.user._id)
   let refer=user.refer
   let wallet=user.wallet
-  let referalLink='http://localhost:3000/signup?refer='+refer
+  let referalLink='https://milana.host/signup?refer='+refer
   let data=await userHelpers.getAllAddress(userId)
   res.render('user/my-profile',{head:true,user,wallet,cat,referalLink,cartCount,data})
 
@@ -592,7 +592,7 @@ router.get('/order-filter',verifyLogin,async(req,res)=>{
   if(req.session.loggedIn){
     cartCount=await userHelpers.getCartCount(user._id)
   }
-  userHelpers.filterbyOrders(req.query.val).then((orders)=>{
+  userHelpers.filterbyOrders(req.query.val,user._id).then((orders)=>{
     for(i=0;i<orders.length;i++){
       var date = orders[i].date.getDate();
       var month = orders[i].date.getMonth() + 1; 

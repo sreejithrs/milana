@@ -56,6 +56,10 @@
     .mb-30 {
         margin: 30px 0;
     }
+
+    @media screen and (max-width: 767px) {
+      .margin-address {margin-top:30px;}
+    }
 </style>
 
 
@@ -80,7 +84,7 @@
 
             <div class="tab-content" id="list">
                 <div id="sectionA">
-                    <div id="click-div" onclick="myFunction()">+ ADD ADDRESS</div>
+                    <div id="click-div" class="margin-address" onclick="myFunction()">+ ADD ADDRESS</div>
                     <div id="section-A" class="tab-pane d-none mt-4">
 
                         <form action="/add-address" method="post">
@@ -279,13 +283,13 @@
                                                 <p class="mb-4"><span
                                                         class="text-primary font-italic me-1">assigment</span>
                                                     Project Status</p>
-                                                <p class="mb-1" style="font-size: .77rem;">Web Design</p>
+                                                <p class="mb-1" style="font-size: .77rem;">Total Ordered Products</p>
                                                 <div class="progress rounded" style="height: 5px;">
                                                     <div class="progress-bar" role="progressbar" style="width: 80%"
                                                         aria-valuenow="80" aria-valuemin="0" aria-valuemax="100">
                                                     </div>
                                                 </div>
-                                                <p class="mt-4 mb-1" style="font-size: .77rem;">Website Markup</p>
+                                                <p class="mt-4 mb-1" style="font-size: .77rem;">Total Delivered</p>
                                                 <div class="progress rounded" style="height: 5px;">
                                                     <div class="progress-bar" role="progressbar" style="width: 72%"
                                                         aria-valuenow="72" aria-valuemin="0" aria-valuemax="100">
@@ -344,7 +348,7 @@
                                 <div class="refer-form-content">
                                     <h2>Refer your Friends</h2>
                                     <p>Copy the below URL and Share it with your friends NOW!</p>
-                                    <input type="text" name="Your Name" id="myInput" value="{{referalLink}}">
+                                    <input type="text" name="Your Name" id="myInput" value="{{referalLink}}" disabled>
                                     <button class="btn btn-dark" onclick="copyFunction()">Copy the URL</button>
                                 </div>
                             </div>
@@ -367,7 +371,7 @@
                                 src="https://lh3.googleusercontent.com/ohLHGNvMvQjOcmRpL4rjS3YQlcpO0D_80jJpJ-QA7-fQln9p3n7BAnqu3mxQ6kI4Sw"
                                 alt="wallet">
                             <p>Total Balance</p>
-                            <p class="amount pt-3 pb-3" style="font-size: x-large;">₹ {{wallet}}</p>
+                            <p class="amount pt-3 pb-3" style="font-size: x-large;">₹ {{#if wallet}}{{wallet}}{{else}}0{{/if}}</p>
                         </div>
                         {{#if userData.wallet}}
                         <div class="txn-history d-flex justify-content-center mt-5">
@@ -439,7 +443,7 @@
                 method: 'get',
                 success: (res) => {
                     $('#sectionA').html('')
-                    $('#sectionA').append(`<div class="row ml-1"><div class="col-lg-9 col-md-8 col-sm-8 col-8 primary-btn1">EDIT ADDRESS</div>
+                    $('#sectionA').append(`<div class="row ml-1 margin-address"><div class="col-lg-9 col-md-8 col-sm-8 col-8 primary-btn1">EDIT ADDRESS</div>
                         <a href="/my-profile" class="col-lg-2 col-md-3 col-sm-3 col-3 ml-3 primary-btn1">BACK</a>
                         </div>
                         <div>

@@ -224,7 +224,7 @@
         "cat": cat,
       },
       success: function (res) {
-        alert(res[0]._id)
+        //alert(res[0]._id)
 
         $('#offerProducts')[0].options.length = 0;
 
@@ -232,8 +232,8 @@
         subArray.forEach(elem => {
           $('#offerProducts').append($('<option>',
             {
-              value: elem,
-              text: elem
+              value: elem._id,
+              text: elem._id
             }));
         })
       },

@@ -98,7 +98,7 @@
                         <b style="font-size: x-large;">Sorry Out of Stock</b>
 
                         {{else}}
-                            <a href="javascript:addCart('{{this.product._id}}')"
+                            <a href="javascript:addCart('{{this.product._id}}',document.querySelector('input[name=color-1]:checked').value,document.querySelector('input[name=size-1]:checked').value)"
                                 class="primary-btn" id="add-to-cart">add to cart</a>
                             <a href='#' class="primary-btn"
                                 onclick="this.href='/add-to-cart?id={{this.product._id}}&color='+ document.querySelector('input[name=color-1]:checked').value+'&size='+ document.querySelector('input[name=size-1]:checked').value">Buy
@@ -162,9 +162,9 @@
                     <div class="product__item__pic set-bg">
                         <span class="label">Sale</span>
                         <a href="/product?id={{this._id}}" target="_blank">
-                            <div class="product__item__pic set-bg" data-setbg="/product-images/{{this.Imageid.[0]}}">
-
+                            <div class="product__item__pic set-bg" data-setbg="/product-images/{{this.Imageid.[0]}}" style="z-index: -1;">
                             </div>
+                            
 
                         </a>
                     </div>
@@ -231,12 +231,6 @@
     };
     new ImageZoom(document.getElementById("img-container"), options);
 
-
-
-</script>
-
-<script>
- 
 
 
 </script>

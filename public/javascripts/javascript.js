@@ -689,7 +689,7 @@ $("#checkout-form").submit((e) => {
 });
 
 function razorpayPayment(order) {
-  var amount = parseFloat(order.amount);
+  var amount = parseInt(order.amount);
   var options = {
     key: "rzp_test_hNaTYcR7AgE7ZH",
     amount: amount,
