@@ -87,7 +87,7 @@
                             <div class="color-picker__item">
                                 {{#each product.Colour}}
                                 <input id="{{this}}" type="radio" value="{{this}}" class="color-picker__input"
-                                    name="color-1" />
+                                    name="color-1" >
                                 <label for="{{this}}" class="color-picker__color color-picker__color--{{this}}"></label>
                                 {{/each}}
                             </div>
@@ -95,7 +95,7 @@
                         <div class="product__details__cart__option">
                         {{#if err}}
 
-                        <b style="font-size: x-large;">Sorry Out of Stock</b>
+                        <b style="font-size: larger; color: white;background-color: red;border-radius: 40px;" class="p-2">Sorry Out of Stock</b>
 
                         {{else}}
                             <a href="javascript:addCart('{{this.product._id}}',document.querySelector('input[name=color-1]:checked').value,document.querySelector('input[name=size-1]:checked').value)"

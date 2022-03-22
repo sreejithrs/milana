@@ -1,22 +1,32 @@
 <div class="container pb-5">
-    <div class="mt-4">
-        <a href="/my-orders"><button type="button" class="btn btn-warning">Back</button></a>
+    <div class="d-flex justify-content-between">
+        <div class="mt-4">
+            <a href="/my-orders"><button type="button" class="btn btn-warning">Back</button></a>
+        </div>
+        <div class="mt-4">
+            {{#if (eq products.[0].status "cancelled")}}
+            <p style="background-color:red;color: #ffffff;" class="p-2">Cancelled</p>
+            {{else}}
+            <a href="/cancel-product?id={{products.[0]._id}}"><button type="button" class="btn btn-danger">Cancel</button></a>
+            {{/if}}
+        </div>
     </div>
     <div class="mt-4" style="background-color: rgb(240, 240, 240);">
         <div class="col-md-4">
             <b style="font-size: large;font-family: Arial, Helvetica, sans-serif;">Delivery Address</b><br>
             <div class="mt-4">
-            <span style="font-weight: 700;">{{products.[0].address.firstname}}&nbsp;{{products.[0].address.lastname}}</span>
+                <span
+                    style="font-weight: 700;">{{products.[0].address.firstname}}&nbsp;{{products.[0].address.lastname}}</span>
 
 
-            <div>
-                <span>{{products.[0].address.address1}}</span>
-                <span>{{products.[0].address.address2}}</span>
-                <span>{{products.[0].address.city}},</span>
-                <span>{{products.[0].address.state}},&nbsp;{{products.[0].address.pin}}</span>
-                <p><span style="font-weight: 700;">Phone Number:</span> {{products.[0].address.phone}}</p>
-                
-            </div>
+                <div>
+                    <span>{{products.[0].address.address1}}</span>
+                    <span>{{products.[0].address.address2}}</span>
+                    <span>{{products.[0].address.city}},</span>
+                    <span>{{products.[0].address.state}},&nbsp;{{products.[0].address.pin}}</span>
+                    <p><span style="font-weight: 700;">Phone Number:</span> {{products.[0].address.phone}}</p>
+
+                </div>
             </div>
         </div>
     </div>
@@ -31,18 +41,18 @@
     {{#each products}}
     <div class="mt-4">
         <div class="row" style="background-color: rgb(240, 240, 240);">
-        <div class="col-md-3">
-            <img src="/product-images/{{this.product.Imageid.[0]}}" style="height: 120px;width: auto;">
+            <div class="col-md-3">
+                <img src="/product-images/{{this.product.Imageid.[0]}}" style="height: 120px;width: auto;">
+            </div>
+            <div class="col-md-3 mt-4">
+                <p>{{this.product.Name}}</p>
+                <p>{{this.product.Title}}</p>
+            </div>
+            <div class="col-md-2 mt-5">{{this.quantity}}</div>
+            <div class="col-md-2 mt-5">{{this.product.Price}}</div>
+            <div class="col-md-2 mt-5">{{this.deliveryDate}}</div>
         </div>
-        <div class="col-md-3">
-            <p>{{this.product.Name}}</p>
-            <p>{{this.product.Title}}</p>
-        </div>
-        <div class="col-md-2">{{this.quantity}}</div>
-        <div class="col-md-2">{{this.product.Price}}</div>
-         <div class="col-md-2">{{this.deliveryDate}}</div>
-         </div>
-       
+
     </div>
     {{/each}}
 </div>

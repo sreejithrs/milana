@@ -996,6 +996,7 @@ function addressValidate() {
     EmailValidate() == true &&
     MobileValidate() == true &&
     pinValidate() == true &&
+    officeValidate() ==true &&
     stateValidate() == true &&
     cityValidate() == true
   ) {
@@ -1100,6 +1101,22 @@ function cityValidate() {
     return true;
   } else {
     $("#errormsg5").html("Enter correct City Name");
+    return false;
+  }
+}
+
+function officeValidate(){
+  var varname = $("#office").val();
+  var pattern = /^[a-zA-Z\\s]/;
+
+  if (varname == "") {
+    $("#errormsg7").html("State is mandatory");
+    return false;
+  } else if (varname.match(pattern)) {
+    $("#errormsg7").html("");
+    return true;
+  } else {
+    $("#errormsg7").html("Enter correct Post Office Address");
     return false;
   }
 }

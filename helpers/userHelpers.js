@@ -684,6 +684,7 @@ module.exports = {
               deliveryDate: "$deliveryDate",
               amount: "$totalAmount",
               userId: "$userId",
+              status:1,
               address: "$delivery",
             },
           },
@@ -702,6 +703,15 @@ module.exports = {
         .toArray();
       resolve(products);
     });
+  },
+
+
+  cancelOrder:(id)=>{
+    return new Promise((resolve,reject)=>{
+      db.get().collection(collection.ORDER_COLLECTION).updateOne({_id:ObjectId(id)},{$set:{status:"cancelled"}}).then(()=>{
+        resolve()
+      })
+    })
   },
 
   /* Filter Products in User Side */

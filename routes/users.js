@@ -449,7 +449,7 @@ router.get('/success', (req, res) => {
           res.redirect('/order-success');
         })
     }
-});
+  });
 });
 
 //Verify Payment for COD, Razor and Paypal
@@ -533,6 +533,7 @@ router.get('/my-profile',verifyLogin,async(req,res)=>{
 
 router.post('/edit-profile',(req,res)=>{
   userHelpers.editProfile(req.session.user._id,req.body).then((response)=>{
+    req.session.user.name=response.name
     res.json(response)
   })
 })
@@ -613,6 +614,15 @@ router.get('/get-order-products',verifyLogin,(req,res)=>{
   })
 })
 
+//Cancel Order
+
+router.get('/cancel-product',(req,res)=>{
+  console.log(req.query.id);
+  userHelpers.cancelOrder(req.query.id).then(()=>{
+    res.redirect('/my-order-products')
+  })
+})
+
 //Get each Ordered products in an Order
 
 router.get('/my-order-products',verifyLogin,async(req,res)=>{
@@ -624,6 +634,7 @@ router.get('/my-order-products',verifyLogin,async(req,res)=>{
   }
   let orderId=req.session.orderId
   userHelpers.getOrderProducts(req.session.user._id,orderId).then((products)=>{
+    console.log(products);
     res.render('user/ordered-products',{user,cat,cartCount,footer:true,head:true,products})
   })
 })
