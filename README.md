@@ -13,15 +13,15 @@
 <br />
 <div align="center">
   <a href="https://github.com/othneildrew/Best-README-Template">
-    <img src="images/milana.png" alt="Logo" width="80" height="80">
+    <img src="/images/milana.png" alt="Logo" width="80" height="80">
   </a>
 
   <h3 align="center">README</h3>
 
   <p align="center">
     About this Project
-    <br />
-    <a href="https:milana.host">Link to Website</a>
+    <br/>
+    <a href="https://milana.host">Link to Website</a>
     ·
     <a href="https://github.com/sreejithrs">Report Bug</a>
     ·
