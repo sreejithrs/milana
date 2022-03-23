@@ -13,10 +13,10 @@
 <br />
 <div align="center">
   <a href="https://github.com/othneildrew/Best-README-Template">
-    <img src="images/logo.png" alt="Logo" width="80" height="80">
+    <img src="images/milana.png" alt="Logo" width="80" height="80">
   </a>
 
-  <h3 align="center">Best-README-Template</h3>
+  <h3 align="center">README</h3>
 
   <p align="center">
     About this Project
@@ -58,8 +58,6 @@
 
 <!-- ABOUT THE PROJECT -->
 ## About The Project
-
-[![Product Name Screen Shot][product-screenshot]](https://example.com)
 
 This is my first E-Commerce Project build using Node Js, MongoDB, Express Js, Javascript, Handlebars, Bootstrap, AJAX, Jquery, etc. 
 
