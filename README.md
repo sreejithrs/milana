@@ -68,7 +68,7 @@ This project has
 
 <b>User Side</b>
 
-<ul>
+<ul style="list-style:none">
 <li>☆ Online Payment Integration</li> 
 <li>☆ Category and Sub-Category wise products</li>
 <li>☆ Responsive Pages</li>
@@ -84,7 +84,7 @@ This project has
 
 <b>Admin Side</b>
 
-<ul>
+<ul style="list-style:none">
 <li>☆ Category Offer,Product Offer</li>
 <li>☆ Sales Report</li>
 <li>☆ Dashboard Charts</li>
