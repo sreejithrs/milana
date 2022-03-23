@@ -98,6 +98,7 @@
                         <b style="font-size: larger; color: white;background-color: red;border-radius: 40px;" class="p-2">Sorry Out of Stock</b>
 
                         {{else}}
+                            <p style="color: olive;font-size: medium;font-weight: 700;">*choose colour & size then proceed*</p>
                             <a href="javascript:addCart('{{this.product._id}}',document.querySelector('input[name=color-1]:checked').value,document.querySelector('input[name=size-1]:checked').value)"
                                 class="primary-btn" id="add-to-cart">add to cart</a>
                             <a href='#' class="primary-btn"
