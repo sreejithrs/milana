@@ -69,29 +69,29 @@ This project has
 <b>User Side</b>
 
 <ul style="list-style:none">
-<li>☆ Online Payment Integration</li> 
-<li>☆ Category and Sub-Category wise products</li>
-<li>☆ Responsive Pages</li>
-<li>☆ OTP Login</li>
-<li>☆ User Profile</li>
-<li>☆ Referal, Wallet</li>
-<li>☆ Price Filter and Search</li>
-<li>☆ Wishlist</li>
-<li>☆ Coupons</li>
-<li>☆ Address Management with Pin Search</li>
-<li>☆ Image Zoom</li>
+<li>Online Payment Integration</li> 
+<li>Category and Sub-Category wise products</li>
+<li>Responsive Pages</li>
+<li>OTP Login</li>
+<li>User Profile</li>
+<li>Referal, Wallet</li>
+<li>Price Filter and Search</li>
+<li>Wishlist</li>
+<li>Coupons</li>
+<li>Address Management with Pin Search</li>
+<li>Image Zoom</li>
 </ul>
 
 <b>Admin Side</b>
 
 <ul style="list-style:none">
-<li>☆ Category Offer,Product Offer</li>
-<li>☆ Sales Report</li>
-<li>☆ Dashboard Charts</li>
-<li>☆ Image Crop</li>
-<li>☆ User Management</li>
-<li>☆ Order Management (Cancel Order)</li>
-<li>☆ Stock Management</li>
+<li>Category Offer,Product Offer</li>
+<li>Sales Report</li>
+<li>Dashboard Charts</li>
+<li>Image Crop</li>
+<li>User Management</li>
+<li>Order Management (Cancel Order)</li>
+<li>Stock Management</li>
 </ul>
 <p align="right">(<a href="#top">back to top</a>)</p>
 
