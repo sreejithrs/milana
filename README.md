@@ -1,4 +1,4 @@
-# milana
+# Milana
 
 <div id="top"></div>
 <!--
@@ -8,25 +8,6 @@
 *** Don't forget to give the project a star!
 *** Thanks again! Now go create something AMAZING! :D
 -->
-
-
-
-<!-- PROJECT SHIELDS -->
-<!--
-*** I'm using markdown "reference style" links for readability.
-*** Reference links are enclosed in brackets [ ] instead of parentheses ( ).
-*** See the bottom of this document for the declaration of the reference variables
-*** for contributors-url, forks-url, etc. This is an optional, concise syntax you may use.
-*** https://www.markdownguide.org/basic-syntax/#reference-style-links
--->
-[![Contributors][contributors-shield]][contributors-url]
-[![Forks][forks-shield]][forks-url]
-[![Stargazers][stars-shield]][stars-url]
-[![Issues][issues-shield]][issues-url]
-[![MIT License][license-shield]][license-url]
-[![LinkedIn][linkedin-shield]][linkedin-url]
-
-
 
 <!-- PROJECT LOGO -->
 <br />
@@ -85,30 +66,33 @@ This is my first E-Commerce Project build using Node Js, MongoDB, Express Js, Ja
 Functionalities:
 This project has 
 
-User Side
+<b>User Side</b>
 
-☆ Online Payment Integration, 
-☆ Category and Sub-Category wise products
-☆ Responsive Pages
-☆ OTP Login
-☆ User Profile
-☆ Referal, Wallet
-☆ Price Filter and Search
-☆ Wishlist
-☆ Coupons
-☆ Address Management with Pin Search
-☆ Image Zoom
+<ul>
+<li>☆ Online Payment Integration</li> 
+<li>☆ Category and Sub-Category wise products</li>
+<li>☆ Responsive Pages</li>
+<li>☆ OTP Login</li>
+<li>☆ User Profile</li>
+<li>☆ Referal, Wallet</li>
+<li>☆ Price Filter and Search</li>
+<li>☆ Wishlist</li>
+<li>☆ Coupons</li>
+<li>☆ Address Management with Pin Search</li>
+<li>☆ Image Zoom</li>
+</ul>
 
-Admin Side
+<b>Admin Side</b>
 
-☆ Category Offer,Product Offer
-☆ Sales Report
-☆ Dashboard Charts
-☆ Image Crop
-☆ User Management
-☆ Order Management (Cancel Order)
-☆ Stock Management
-
+<ul>
+<li>☆ Category Offer,Product Offer</li>
+<li>☆ Sales Report</li>
+<li>☆ Dashboard Charts</li>
+<li>☆ Image Crop</li>
+<li>☆ User Management</li>
+<li>☆ Order Management (Cancel Order)</li>
+<li>☆ Stock Management</li>
+</ul>
 <p align="right">(<a href="#top">back to top</a>)</p>
 
 
@@ -117,12 +101,11 @@ Admin Side
 
 This section should list any major frameworks/libraries used to bootstrap your project. Leave any add-ons/plugins for the acknowledgements section. Here are a few examples.
 
-* [Next.js](https://nextjs.org/)
-* [React.js](https://reactjs.org/)
-* [Vue.js](https://vuejs.org/)
-* [Angular](https://angular.io/)
-* [Svelte](https://svelte.dev/)
-* [Laravel](https://laravel.com)
+* [Node.js](https://nodejs.org/)
+* [MongoDB](https://mongodb.com/)
+* [Express.js](https://expressjs.com/)
+* [Javascript](https://www.javascript.com/)
+* [Handlebars](https://handlebarsjs.com/)
 * [Bootstrap](https://getbootstrap.com)
 * [JQuery](https://jquery.com)
 
@@ -136,44 +119,19 @@ This section should list any major frameworks/libraries used to bootstrap your p
 This is an example of how you may give instructions on setting up your project locally.
 To get a local copy up and running follow these simple example steps.
 
-### Prerequisites
-
-This is an example of how to list things you need to use the software and how to install them.
-* npm
-  ```sh
-  npm install npm@latest -g
-  ```
-
 ### Installation
 
 _Below is an example of how you can instruct your audience on installing and setting up your app. This template doesn't rely on any external dependencies or services._
 
-1. Get a free API Key at [https://example.com](https://example.com)
-2. Clone the repo
+1. Clone the repo
    ```sh
-   git clone https://github.com/your_username_/Project-Name.git
+   git clone Github repo: https://github.com/sreejithrs/milana.git
+   
    ```
 3. Install NPM packages
    ```sh
    npm install
    ```
-4. Enter your API in `config.js`
-   ```js
-   const API_KEY = 'ENTER YOUR API';
-   ```
-
-<p align="right">(<a href="#top">back to top</a>)</p>
-
-
-
-<!-- USAGE EXAMPLES -->
-
-## Usage
-
-Use this space to show useful examples of how a project can be used. Additional screenshots, code examples and demos work well in this space. You may also link to more resources.
-
-_For more examples, please refer to the [Documentation](https://example.com)_
-
 <p align="right">(<a href="#top">back to top</a>)</p>
 
 
@@ -182,8 +140,8 @@ _For more examples, please refer to the [Documentation](https://example.com)_
 
 ## Contact
 
-Your Name - [@your_twitter](https://twitter.com/your_username) - email@example.com
+Your Name - [instagram](https://www.instagram.com/insane_soul_sj/) 
 
-Project Link: [https://github.com/your_username/repo_name](https://github.com/your_username/repo_name)
+Project Link: [Milana](https://milana.host)
 
 <p align="right">(<a href="#top">back to top</a>)</p>
