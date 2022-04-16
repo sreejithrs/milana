@@ -137,14 +137,7 @@ router.post('/login/verify',(req,res)=>{
   userHelpers.mobileCheck(req.body).then((user)=>{
     let number=req.body.number
     req.session.user=user
-    // client.verify
-    // .services(serviceSID)
-    // .verifications.create({
-    //     to: '+91'+ number,
-    //     body: random+' is your OTP number',
-    //     channel: "sms",
-    //     from: '+19036183839'
-    // })
+ 
     client.messages
     .create({
     body: random+' is your OTP number',
